@@ -1,0 +1,12 @@
+{
+  "name": "nuxt-i18n-module",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": "https://github.com/njam/nuxt-i18n-module",
+  "homepage": "https://github.com/njam/nuxt-i18n-module",
+  "dependencies": {
+    "vue-i18n": "^7.3.2",
+    "path-to-regexp": "^2.1.0"
+  }
+}
