@@ -18,11 +18,13 @@ This module will dynamically generate routes for a set of languages:
 
 Those routes will also be generated when rendering in SSR mode.
 
-## Compatibility
+Installation & Configuration
+----------------------------
+### Compatibility
 
 Tested with Nuxt *1.0.0-rc11*.
 
-## Setup
+### Setup
 - Add `nuxt-i18n-module` dependency using yarn or npm to your project
 - Add `nuxt-i18n-module` to `modules` section of `nuxt.config.js` and define the languages to use:
 ```js
@@ -42,7 +44,7 @@ For example:
 }
 ```
 
-## Usage in components
+### Usage in components
 To point to a URL in the currently active language, use `localePath()`:
 ```html
 <nuxt-link :to="localePath('/foo')">Foo</nuxt-link>
@@ -51,4 +53,16 @@ To point to a URL in the currently active language, use `localePath()`:
 To translate a phrase, use vue-i18n's `$t()`:
 ```html
 <h1>{{ $t('hello-world') }}</h1>
+```
+
+Development
+-----------
+Install dependencies:
+```
+yarn install
+```
+
+Run tests:
+```
+npm run test
 ```
