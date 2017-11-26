@@ -21,8 +21,31 @@ describe('Module', () => {
     await nuxt.close()
   })
 
-  test('render', async () => {
-    let html = await get('/')
-    expect(html).toContain('Works!')
+  test('render-foo-de', async () => {
+    let html = await get('/de/foo')
+    expect(html).toContain('Foo page')
+    expect(html).toContain('Hallo Welt!')
+  })
+
+  test('render-foo-en', async () => {
+    let html = await get('/en/foo')
+    expect(html).toContain('Foo page')
+    expect(html).toContain('Hello World!')
+  })
+
+  test('render-foo-default', async () => {
+    let html = await get('/foo')
+    expect(html).toContain('Foo page')
+    expect(html).toContain('Hello World!')
+
+    /**
+     * @todo
+     * We should check the JS-based redirect to the navigator's language here.
+     * Probably we can use "jsdom" for that, but it doesn't currently work because of
+     * https://github.com/eddyerburgh/avoriaz/issues/77
+     *
+     * Something like this:
+     * const window = await nuxt.renderAndGetWindow(url('/foo'))
+     */
   })
 })
