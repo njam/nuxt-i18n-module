@@ -25,12 +25,22 @@ describe('Module', () => {
     let html = await get('/de/foo')
     expect(html).toContain('Foo page')
     expect(html).toContain('Hallo Welt!')
+    expect(html).toMatch(/<a href="\/de\/foo".*?>foo<\/a>/)
+    expect(html).toMatch(/<a href="\/de\/bar".*?>bar<\/a>/)
+    expect(html).toMatch(/<link.*?rel="alternate" hreflang="en" href="\/en\/foo"\/>/)
+    expect(html).toMatch(/<link.*?rel="alternate" hreflang="de" href="\/de\/foo"\/>/)
+    expect(html).toMatch(/<link.*?rel="alternate" hreflang="x-default" href="\/foo"\/>/)
   })
 
   test('render-foo-en', async () => {
     let html = await get('/en/foo')
     expect(html).toContain('Foo page')
     expect(html).toContain('Hello World!')
+    expect(html).toMatch(/<a href="\/en\/foo".*?>foo<\/a>/)
+    expect(html).toMatch(/<a href="\/en\/bar".*?>bar<\/a>/)
+    expect(html).toMatch(/<link.*?rel="alternate" hreflang="en" href="\/en\/foo"\/>/)
+    expect(html).toMatch(/<link.*?rel="alternate" hreflang="de" href="\/de\/foo"\/>/)
+    expect(html).toMatch(/<link.*?rel="alternate" hreflang="x-default" href="\/foo"\/>/)
   })
 
   test('render-foo-default', async () => {
