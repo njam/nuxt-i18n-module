@@ -56,9 +56,17 @@ export default ({app, store}) => {
           }
         },
         beforeMount () {
-          if (!this.$route.params.lang) {
+          let isRoot = !this.$options.parent
+          if (isRoot && !this.$route.params.lang) {
             this.$router.replace({params: {lang: this.detectLanguage()}})
           }
+        },
+        transition (to, from) {
+          if (from && from['name'] === to['name']) {
+            // Disable page transition when switching language
+            return {duration: 0, css: false}
+          }
+          return {}
         },
         head () {
           if (!this.$route) {
