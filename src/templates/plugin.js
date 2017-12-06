@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
+import NuxtI18nLink from '~/modules/nuxt-i18n-module/src/components/NuxtI18nLink.vue'
 import './i18n.middleware'
 
 Vue.use(VueI18n)
@@ -27,11 +28,12 @@ export default ({app, store}) => {
   })
   app.i18n = new VueI18n({
     locale: store.state['i18n'].language,
-    fallbackLocale: options.languages[0],
+    fallbackLocale: options.defaultLanguage || options.languages[0],
     messages: messages,
     silentTranslationWarn: true
   })
 
+  Vue.availableLanguages = Object.keys(messages)
   Vue.use({
     install (app) {
       app.mixin({
@@ -42,17 +44,17 @@ export default ({app, store}) => {
           detectLanguage () {
             let languageList = []
             if (typeof navigator !== 'undefined') {
-              if (navigator.userLanguage) {
-                languageList.unshift(navigator.userLanguage.substring(0, 2))
-              }
-              if (navigator.language) {
-                languageList.unshift(navigator.language.substring(0, 2))
-              }
+              if (navigator.languages) navigator.languages.forEach((lang) => languageList.unshift(lang.substring(0, 2)))
+              if (navigator.language) languageList.unshift(navigator.language.substring(0, 2))
+              if (navigator.userLanguage) languageList.unshift(navigator.userLanguage.substring(0, 2))
+
+              // Clean duplicate entries
+              languageList = Array.from(new Set(languageList))
             }
             let language = languageList.find((language) => {
               return (options.languages.indexOf(language) !== -1)
             })
-            return language || options.languages[0]
+            return language || options.defaultLanguage || options.languages[0]
           }
         },
         beforeMount () {
@@ -87,6 +89,8 @@ export default ({app, store}) => {
           }
         }
       })
+
+      app.component('NuxtI18nLink', NuxtI18nLink)
     }
   })
 }
@@ -104,4 +108,5 @@ function registerStoreModule (store, name, definition) {
   store.registerModule(name, definition)
 }
 
+// eslint-disable-next-line
 const options = <%= serialize(options) %>
