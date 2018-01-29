@@ -273,7 +273,7 @@ autoprefixer@^6.3.1:
     postcss "^5.2.16"
     postcss-value-parser "^3.2.3"
 
-autoprefixer@^7.1.1, autoprefixer@^7.2.4:
+autoprefixer@^7.1.1, autoprefixer@^7.2.5:
   version "7.2.5"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-7.2.5.tgz#04ccbd0c6a61131b6d13f53d371926092952d192"
   dependencies:
@@ -1167,7 +1167,7 @@ caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
   version "1.0.30000795"
   resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000795.tgz#644f03fab00dd8bd1693e5e1e70d86b31c5cfece"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000789, caniuse-lite@^1.0.30000791, caniuse-lite@^1.0.30000792:
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000791, caniuse-lite@^1.0.30000792:
   version "1.0.30000792"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000792.tgz#d0cea981f8118f3961471afbb43c9a1e5bbf0332"
 
@@ -1600,14 +1600,14 @@ css-color-names@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
 
-css-hot-loader@^1.3.5:
+css-hot-loader@^1.3.6:
   version "1.3.6"
   resolved "https://registry.yarnpkg.com/css-hot-loader/-/css-hot-loader-1.3.6.tgz#6da65f21ce40920ea2c46a87158c53831b83dcb8"
   dependencies:
     loader-utils "^1.1.0"
     normalize-url "^1.9.1"
 
-css-loader@^0.28.8:
+css-loader@^0.28.9:
   version "0.28.9"
   resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.28.9.tgz#68064b85f4e271d7ce4c48a58300928e535d1c95"
   dependencies:
@@ -1960,7 +1960,7 @@ end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
-enhanced-resolve@^3.4.0:
+enhanced-resolve@^3.4.0, enhanced-resolve@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-3.4.1.tgz#0421e339fd71419b3da13d129b3979040230476e"
   dependencies:
@@ -2017,7 +2017,7 @@ es6-map@^0.1.3:
     es6-symbol "~3.1.1"
     event-emitter "~0.3.5"
 
-es6-promise@^4.2.2:
+es6-promise@^4.2.4:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.2.4.tgz#dc4221c2b16518760bd8c39a52d8f356fc00ed29"
 
@@ -3558,7 +3558,7 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
 
-launch-editor-middleware@^2.1.0:
+launch-editor-middleware@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/launch-editor-middleware/-/launch-editor-middleware-2.2.0.tgz#a0bde4f3ea7ec8a55fcbf3ec5da5de1edc1d7824"
   dependencies:
@@ -4120,26 +4120,26 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-nuxt@^1.1.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-1.1.1.tgz#a4fbeafb243b8431c317834c013a8b7d0d7b74f1"
+nuxt@^1.2.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-1.2.1.tgz#bea0cef7c0fb9a67b284d629cccb6e55a3bf5a04"
   dependencies:
     "@nuxtjs/youch" "^4.2.3"
     ansi-html "^0.0.7"
-    autoprefixer "^7.2.4"
+    autoprefixer "^7.2.5"
     babel-core "^6.26.0"
     babel-loader "^7.1.2"
     babel-preset-vue-app "^2.0.0"
-    caniuse-lite "^1.0.30000789"
+    caniuse-lite "^1.0.30000792"
     chalk "^2.3.0"
     chokidar "^2.0.0"
     clone "^2.1.1"
     compression "^1.7.1"
     connect "^3.6.5"
-    css-hot-loader "^1.3.5"
-    css-loader "^0.28.8"
+    css-hot-loader "^1.3.6"
+    css-loader "^0.28.9"
     debug "^3.1.0"
-    es6-promise "^4.2.2"
+    es6-promise "^4.2.4"
     etag "^1.8.1"
     extract-text-webpack-plugin "^3.0.2"
     file-loader "^1.1.6"
@@ -4151,15 +4151,16 @@ nuxt@^1.1.0:
     html-minifier "3.5.8"
     html-webpack-plugin "^2.30.1"
     launch-editor "^2.0.0"
-    launch-editor-middleware "^2.1.0"
+    launch-editor-middleware "^2.2.0"
     lodash "^4.17.4"
     lru-cache "^4.1.1"
     memory-fs "^0.4.1"
     minimist "^1.2.0"
     opencollective "^1.0.3"
     postcss "^6.0.16"
-    postcss-cssnext "^3.0.2"
+    postcss-cssnext "^3.1.0"
     postcss-import "^11.0.0"
+    postcss-import-resolver "^1.1.0"
     postcss-loader "^2.0.10"
     postcss-url "^7.3.0"
     pretty-error "^2.1.1"
@@ -4167,20 +4168,20 @@ nuxt@^1.1.0:
     serialize-javascript "^1.4.0"
     serve-static "^1.13.1"
     server-destroy "^1.0.1"
-    source-map "^0.6.1"
+    source-map "^0.7.0"
     style-resources-loader "^1.0.0"
     uglifyjs-webpack-plugin "^1.1.6"
     upath "^1.0.2"
     url-loader "^0.6.2"
     vue "^2.5.13"
-    vue-loader "^13.6.2"
+    vue-loader "^13.7.0"
     vue-meta "^1.4.2"
     vue-router "^3.0.1"
     vue-server-renderer "^2.5.13"
     vue-template-compiler "^2.5.13"
     vuex "^3.0.1"
     webpack "^3.10.0"
-    webpack-bundle-analyzer "^2.9.0"
+    webpack-bundle-analyzer "^2.9.2"
     webpack-dev-middleware "^2.0.4"
     webpack-hot-middleware "^2.21.0"
     webpack-node-externals "^1.6.0"
@@ -4634,7 +4635,7 @@ postcss-convert-values@^2.3.4:
     postcss "^5.0.11"
     postcss-value-parser "^3.1.2"
 
-postcss-cssnext@^3.0.2:
+postcss-cssnext@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/postcss-cssnext/-/postcss-cssnext-3.1.0.tgz#927dc29341a938254cde38ea60a923b9dfedead9"
   dependencies:
@@ -4746,6 +4747,12 @@ postcss-image-set-polyfill@^0.3.5:
   dependencies:
     postcss "^6.0.1"
     postcss-media-query-parser "^0.2.3"
+
+postcss-import-resolver@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/postcss-import-resolver/-/postcss-import-resolver-1.1.0.tgz#08a1a9811da625d28317abc31565a8408ff28cd2"
+  dependencies:
+    enhanced-resolve "^3.4.1"
 
 postcss-import@^11.0.0:
   version "11.0.0"
@@ -5791,6 +5798,10 @@ source-map@^0.6.1, source-map@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
 
+source-map@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.0.tgz#ebf0d13a48f3619f91891816fdda932f83a6021f"
+
 spdx-correct@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/spdx-correct/-/spdx-correct-1.0.2.tgz#4b3073d933ff51f3912f03ac5519498a4150db40"
@@ -6383,7 +6394,7 @@ vue-i18n@^7.3.2:
   version "7.4.1"
   resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-7.4.1.tgz#3b2582edc3ea10609b0b890b79b62bd9642c9ddd"
 
-vue-loader@^13.6.2:
+vue-loader@^13.7.0:
   version "13.7.0"
   resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-13.7.0.tgz#4d6a35b169c2a0a488842fb95c85052105fa9729"
   dependencies:
@@ -6481,7 +6492,7 @@ webidl-conversions@^4.0.0:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
 
-webpack-bundle-analyzer@^2.9.0:
+webpack-bundle-analyzer@^2.9.2:
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-2.9.2.tgz#63ed86eb71cc4cda86f68e685a84530ba0126449"
   dependencies:

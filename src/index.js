@@ -46,21 +46,22 @@ module.exports = function (moduleOptions) {
     return routes
   }
 
-  this.nuxt.hook('generator', generator => {
-    generator.plugin('generateRoutes', ({generateRoutes}) => {
-      let routes = flatRoutes(this.options.router.routes)
-      routes = routes.filter((route) => {
-        let tokens = pathToRegexp.parse(route)
-        let params = tokens.filter((token) => typeof token === 'object')
-        return params.length === 1 && params[0].name === 'lang'
-      })
-      routes.forEach((route) => {
-        let toPath = pathToRegexp.compile(route)
-        let languageParamList = moduleOptions.languages.concat(null)
-        languageParamList.forEach((languageParam) => {
-          generateRoutes.push(toPath({lang: languageParam}))
-        })
+  let router = this.options.router
+  this.options.generate.routes = function() {
+    let routes = flatRoutes(router.routes)
+    let routesGenerated = []
+    routes = routes.filter((route) => {
+      let tokens = pathToRegexp.parse(route)
+      let params = tokens.filter((token) => typeof token === 'object')
+      return params.length === 1 && params[0].name === 'lang'
+    })
+    routes.forEach((route) => {
+      let toPath = pathToRegexp.compile(route)
+      let languageParamList = moduleOptions.languages.concat(null)
+      languageParamList.forEach((languageParam) => {
+        routesGenerated.push(toPath({lang: languageParam}))
       })
     })
-  })
+    return routesGenerated
+  }
 }
