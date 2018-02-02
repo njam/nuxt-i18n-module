@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "jest": "^21.2.1",
-    "nuxt": "^1.0.0-rc11",
+    "nuxt": "^1.2.0",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5"
   },

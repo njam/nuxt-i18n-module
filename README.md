@@ -22,7 +22,7 @@ Installation & Configuration
 ----------------------------
 ### Compatibility
 
-Tested with Nuxt *1.0.0-rc11*.
+Tested with Nuxt *1.2.0*.
 
 ### Setup
 - Add `nuxt-i18n-module` dependency using yarn or npm to your project
