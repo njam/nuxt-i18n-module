@@ -1,6 +1,8 @@
 nuxt-i18n-module
 ================
 
+[![Build Status](https://img.shields.io/travis/njam/nuxt-i18n-module/master.svg)](https://travis-ci.org/njam/nuxt-i18n-module)
+
 Internationalization module for Nuxt.
 
 
