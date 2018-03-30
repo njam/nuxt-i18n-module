@@ -6,6 +6,8 @@ nuxt-i18n-module
 Internationalization module for Nuxt.
 
 
+About
+-----
 Adds the [vue-i18n](https://github.com/kazupon/vue-i18n) plugin, language-specific routes and html headers.
 
 Given a page "foo":
@@ -19,6 +21,7 @@ This module will dynamically generate routes for a set of languages:
 - **/foo**: This page will detect the user's language on the *client side* and redirect to the appropriate language-URL.
 
 Those routes will also be generated when rendering in SSR mode.
+
 
 Installation & Configuration
 ----------------------------
@@ -56,6 +59,7 @@ To translate a phrase, use vue-i18n's `$t()`:
 ```html
 <h1>{{ $t('hello-world') }}</h1>
 ```
+
 
 Development
 -----------
