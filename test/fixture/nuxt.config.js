@@ -5,5 +5,10 @@ module.exports = {
     ['@@', {
       languages: ['en', 'de']
     }]
-  ]
+  ],
+  generate: {
+    routes: [
+      "/dynamic/44"
+    ]
+  }
 }

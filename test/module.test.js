@@ -58,4 +58,13 @@ describe('Module', () => {
      * const window = await nuxt.renderAndGetWindow(url('/foo'))
      */
   })
+
+  test('render-dynamic-de', async () => {
+    let html = await get('/de/dynamic/12')
+    expect(html).toContain('Dynamic page: 12')
+    expect(html).toContain('Hallo Welt!')
+    expect(html).toMatch(/<link.*?rel="alternate" hreflang="en" href="\/en\/dynamic\/12"\/>/)
+    expect(html).toMatch(/<link.*?rel="alternate" hreflang="de" href="\/de\/dynamic\/12"\/>/)
+    expect(html).toMatch(/<link.*?rel="alternate" hreflang="x-default" href="\/dynamic\/12"\/>/)
+  })
 })
