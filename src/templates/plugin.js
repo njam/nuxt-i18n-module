@@ -8,7 +8,7 @@ export default ({app, store}) => {
   registerStoreModule(store, 'i18n', {
     namespaced: true,
     state: () => ({
-      language: null
+      language: options.languages[0]
     }),
     mutations: {
       setLanguage (state, language) {
