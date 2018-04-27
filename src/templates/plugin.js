@@ -37,7 +37,11 @@ export default ({app, store}) => {
       app.mixin({
         methods: {
           localePath (url) {
-            return '/' + store.state['i18n'].language + url
+            let lang = this.$route.params.lang
+            if (lang) {
+              url = '/' + lang + url
+            }
+            return url
           },
           detectLanguage () {
             let languageList = []
@@ -76,10 +80,10 @@ export default ({app, store}) => {
           let alternateLinks = languageParamList.map((languageParam) => {
             let hreflang = (languageParam ? languageParam : 'x-default')
             return {
-              hid: 'alternate-lang-' + hreflang,
+              href: this.$router.resolve({params: {lang: languageParam}}).href,
               rel: 'alternate',
               hreflang: hreflang,
-              href: this.$router.resolve({params: {lang: languageParam}}).href
+              hid: 'alternate-lang-' + hreflang
             }
           })
           return {
