@@ -7,5 +7,14 @@ node_js:
 install: yarn install
 script: npm test
 
+deploy:
+  provider: npm
+  email: reto@retokaiser.com
+  api_key:
+    secure: "V6cEfMRz3CpyQMkq4c+ZifGig0QeiXQPtiVP3VbyaudZ2bsKT7EkKO+D2XwxtKVmGilFwBqS8p5DSc+z5bNvhzVfBu7KhtiFzPxHRRD776IctRmRHZk2RidJjseOTFQRYE9i1YhIMA0ggGL4HNeUxF/V8QzQaI/Rya8/uc3Ev/EGhwhOUmVbPjZt094JRyiXxrawYBRmC+SSd2lGtEHk/UzN6LBwbX0xVr4qzrcnweEZVwej2lbEwaNbN6Twy5gasas+O6iPwbcCKmvPO7vC3n7MrpbFiWlZB3UBmHWjvYUv9KmYSrTRQpqd03EWWE727lFVmunhpCaP1FaYcHylmSTpJltsp4uHTBBV9M8SgxFGJcz0WO82r4GR4iOIqtEUQm4BYFwxEq8c8JnH6Y2BmIgJ3KsluQX9HmqJrfg30Ek2q7RnH3HBLPkJV6W5rCoslLNkUElXjfl8YMgYac9At2Rko6sC0vleE+5QtHJK/EhEnGU+6qMAuph2A0OiMb1dHXGlHP9Lb7KQt1RS4xgmXRNZAqtvTNcFiEG5rsh3y/kmYoQO2lzPE/qTwMQkYdzTuTPsyxYm+4tE9eIr4sOEw4C84Tm/Zq52FmxrU1pdSxlZjW2WGX+88eoNQkTndGH2+q9FpPT6TgTx+KO/d0njrMw45XhUB8lmmJM71gi9bfo="
+  on:
+    tags: true
+    repo: njam/nuxt-i18n-module
+
 notifications:
   email: false

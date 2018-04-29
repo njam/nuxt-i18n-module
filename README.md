@@ -2,6 +2,8 @@ nuxt-i18n-module
 ================
 
 [![Build Status](https://img.shields.io/travis/njam/nuxt-i18n-module/master.svg)](https://travis-ci.org/njam/nuxt-i18n-module)
+[![npm](https://img.shields.io/npm/v/nuxt-i18n-module.svg)](https://www.npmjs.com/package/nuxt-i18n-module)
+
 
 Internationalization module for Nuxt.
 
@@ -72,3 +74,9 @@ Run tests:
 ```
 npm run test
 ```
+
+Release a new version:
+
+1. Bump the version in `package.json`, merge to *master*.
+2. Push a new tag to *master*.
+3. Travis will deploy to NPM.
