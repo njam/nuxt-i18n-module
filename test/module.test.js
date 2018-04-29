@@ -1,4 +1,4 @@
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
 process.env.PORT = process.env.PORT || 5060
 
 const {Nuxt, Builder, Generator} = require('nuxt')
@@ -72,6 +72,11 @@ describe('Module', () => {
     describeUrl('/foo', (html) => {
       expect(html).toContain('Foo page')
       expect(html).toContain('Hello World!')
+      expect(html).toMatch(/<a href="\/en\/foo".*?>foo<\/a>/)
+      expect(html).toMatch(/<a href="\/en\/bar".*?>bar<\/a>/)
+      expect(html).toMatch(new RegExp('<link [^>]*href="/en/foo" [^>]*rel="alternate" [^>]*hreflang="en"[^>]*>'))
+      expect(html).toMatch(new RegExp('<link [^>]*href="/de/foo" [^>]*rel="alternate" [^>]*hreflang="de"[^>]*>'))
+      expect(html).toMatch(new RegExp('<link [^>]*href="/foo" [^>]*rel="alternate" [^>]*hreflang="x-default"[^>]*>'))
 
       /**
        * @todo

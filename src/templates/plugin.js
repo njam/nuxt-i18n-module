@@ -37,7 +37,7 @@ export default ({app, store}) => {
       app.mixin({
         methods: {
           localePath (url) {
-            let lang = this.$route.params.lang
+            let lang = this.$i18n.locale
             if (lang) {
               url = '/' + lang + url
             }
