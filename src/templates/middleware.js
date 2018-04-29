@@ -6,13 +6,11 @@ middleware['i18n'] = function ({isHMR, app, store, route, params, error, redirec
     return
   }
 
-  const urlLanguage = params.lang
-  if (urlLanguage) {
-    if (options.languages.indexOf(urlLanguage) === -1) {
-      return error({message: 'This page could not be found.', statusCode: 404})
-    }
-    store.commit('i18n/setLanguage', urlLanguage)
+  const lang = params.lang || options.languages[0]
+  if (options.languages.indexOf(lang) === -1) {
+    return error({message: 'This page could not be found.', statusCode: 404})
   }
+  store.commit('i18n/setLanguage', lang)
 }
 
 const options = <%= serialize(options) %>
