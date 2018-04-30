@@ -44,14 +44,12 @@ module.exports = function (moduleOptions) {
      */
     routes.forEach(route => {
       let routeWithLang = addLangParamToRoute(route.route)
-      interpolateLangInRoute(routeWithLang).forEach(path => {
-        routesToGenerate.push({route: path, payload: route.payload})
-      })
+      routesToGenerate.push(...interpolateLangInRoute(routeWithLang, route.payload))
     })
 
     /*
      * Routes from the router with dynamic parameters are not 'generated' by nuxt.
-     * We find those with only a single parameter called `:lang` here, interpolate the language
+     * We take those that have only a single parameter called `:lang`, interpolate the language
      * and add them for 'generation'.
      */
     let routesRouter = flatRoutes(router.routes)
@@ -61,9 +59,7 @@ module.exports = function (moduleOptions) {
       return params.length === 1 && params[0].name === 'lang'
     })
     routesRouter.forEach(routeWithLang => {
-      interpolateLangInRoute(routeWithLang).forEach(path => {
-        routesToGenerate.push({route: path, payload: null})
-      })
+      routesToGenerate.push(...interpolateLangInRoute(routeWithLang))
     })
 
     // Replace elements in `routes` with elements from `routesToGenerate`
@@ -80,13 +76,17 @@ module.exports = function (moduleOptions) {
 
   /**
    * @param {string} path
-   * @returns {string[]}
+   * @param {object} [payload]
+   * @returns {{route:string, payload:object}[]}
    */
-  function interpolateLangInRoute (path) {
+  function interpolateLangInRoute (path, payload) {
     let toPath = pathToRegexp.compile(path)
     let languageParamList = moduleOptions.languages.concat(null)
     return languageParamList.map(languageParam => {
-      return toPath({lang: languageParam})
+      return {
+        route: toPath({lang: languageParam}),
+        payload: Object.assign({lang: languageParam}, payload)
+      }
     })
   }
 
