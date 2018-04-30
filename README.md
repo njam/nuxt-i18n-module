@@ -38,7 +38,8 @@ Tested with Nuxt *1.2.0*.
 {
   modules: [
     ['nuxt-i18n-module', {
-      languages: ['en', 'de']
+      languages: ['en', 'de'],
+      defaultLanguage: 'en'
     }]
   ]
 }
@@ -51,7 +52,16 @@ For example:
 }
 ```
 
+### Options of module
+- `languages` : An list available languages
+- `defaultLanguage` : The default language ***⚠ Required: The value need defined in `languages`***
+
 ### Usage in components
+Create link to an lang you can use `nuxt-i18n-link`:
+```html
+<nuxt-i18n-link lang="en">Engligh</nuxt-i18n-link>
+```
+
 To point to a URL in the currently active language, use `localePath()`:
 ```html
 <nuxt-link :to="localePath('/foo')">Foo</nuxt-link>

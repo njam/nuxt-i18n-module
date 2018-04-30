@@ -3,10 +3,15 @@ const pathToRegexp = require('path-to-regexp')
 
 module.exports = function (moduleOptions) {
   const defaults = {
-    languages: ['en']
+    languages: ['en'],
+    defaultLanguage: 'en'
   }
   moduleOptions = Object.assign({}, defaults, moduleOptions)
   let router = this.options.router
+
+  if(moduleOptions.languages.indexOf(moduleOptions.defaultLanguage) === -1) {
+    throw new Error('The `defaultLanguage` is not in `languages`.')
+  }
 
   // Add middleware
   this.addTemplate({
