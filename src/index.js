@@ -71,7 +71,7 @@ module.exports = function (moduleOptions) {
    * @returns {string}
    */
   function addLangParamToRoute (path) {
-    return `/:lang(\\w{2})?${path}`
+    return `/:lang([\\w-]{2,5})?${path}`
   }
 
   /**
