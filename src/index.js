@@ -6,6 +6,10 @@ module.exports = function (moduleOptions) {
     languages: ['en']
   }
   moduleOptions = Object.assign({}, defaults, moduleOptions)
+  if (typeof moduleOptions.defaultLanguage === 'undefined') moduleOptions.defaultLanguage = moduleOptions.languages[0]
+  else if (moduleOptions.languages.indexOf(moduleOptions.defaultLanguage) === -1) {
+    moduleOptions.languages.push(moduleOptions.defaultLanguage)
+  }
   let router = this.options.router
 
   // Add middleware
