@@ -4,7 +4,7 @@ import './i18n.middleware'
 
 Vue.use(VueI18n)
 
-export default ({app, store}) => {
+export default ({ app, store }) => {
   registerStoreModule(store, 'i18n', {
     namespaced: true,
     state: () => ({
@@ -22,7 +22,7 @@ export default ({app, store}) => {
   })
 
   let messages = {}
-  options.languages.forEach((lang) => {
+  options.languages.forEach(lang => {
     messages[lang] = require('~/assets/locale/' + lang + '.json')
   })
   app.i18n = new VueI18n({
@@ -53,8 +53,8 @@ export default ({app, store}) => {
                 languageList.unshift(navigator.language.substring(0, 2))
               }
             }
-            let language = languageList.find((language) => {
-              return (options.languages.indexOf(language) !== -1)
+            let language = languageList.find(language => {
+              return options.languages.indexOf(language) !== -1
             })
             return language || options.languages[0]
           }
@@ -62,13 +62,13 @@ export default ({app, store}) => {
         beforeMount () {
           let isRoot = !this.$options.parent
           if (isRoot && !this.$route.params.lang) {
-            this.$router.replace({params: {lang: this.detectLanguage()}})
+            this.$router.replace({ params: { lang: this.detectLanguage() } })
           }
         },
         transition (to, from) {
           if (from && from['name'] === to['name']) {
             // Disable page transition when switching language
-            return {duration: 0, css: false}
+            return { duration: 0, css: false }
           }
           return {}
         },
@@ -77,10 +77,10 @@ export default ({app, store}) => {
             return
           }
           let languageParamList = options.languages.concat(null)
-          let alternateLinks = languageParamList.map((languageParam) => {
-            let hreflang = (languageParam ? languageParam : 'x-default')
+          let alternateLinks = languageParamList.map(languageParam => {
+            let hreflang = languageParam || 'x-default'
             return {
-              href: this.$router.resolve({params: {lang: languageParam}}).href,
+              href: this.$router.resolve({ params: { lang: languageParam } }).href,
               rel: 'alternate',
               hreflang: hreflang,
               hid: 'alternate-lang-' + hreflang
