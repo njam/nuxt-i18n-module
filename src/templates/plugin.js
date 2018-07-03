@@ -27,10 +27,11 @@ export default ({ app, store }) => {
   })
   app.i18n = new VueI18n({
     locale: store.state['i18n'].language,
-    fallbackLocale: options.languages[0],
-    messages: messages,
+    fallbackLocale: options.defaultLanguage,
+    messages,
     silentTranslationWarn: true
   })
+  Vue.availableLanguages = options.languages
 
   Vue.use({
     install (app) {
@@ -46,17 +47,16 @@ export default ({ app, store }) => {
           detectLanguage () {
             let languageList = []
             if (typeof navigator !== 'undefined') {
-              if (navigator.userLanguage) {
-                languageList.unshift(navigator.userLanguage.substring(0, 2))
-              }
-              if (navigator.language) {
-                languageList.unshift(navigator.language.substring(0, 2))
-              }
+              if (navigator.language) languageList.unshift(navigator.language.substring(0, 2))
+              if (navigator.userLanguage) languageList.unshift(navigator.userLanguage.substring(0, 2))
+
+              // Clean duplicate entries
+              languageList = Array.from(new Set(languageList))
             }
             let language = languageList.find(language => {
               return options.languages.indexOf(language) !== -1
             })
-            return language || options.languages[0]
+            return language || options.defaultLanguage
           }
         },
         beforeMount () {
