@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
+import NuxtI18nLink from '~/modules/nuxt-i18n-module/src/components/NuxtI18nLink.vue'
 import './i18n.middleware'
 
 Vue.use(VueI18n)
@@ -93,6 +94,8 @@ export default ({ app, store }) => {
       })
     }
   })
+
+  app.component('NuxtI18nLink', NuxtI18nLink)
 }
 
 function registerStoreModule (store, name, definition) {
