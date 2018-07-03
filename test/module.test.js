@@ -1,20 +1,21 @@
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
 process.env.PORT = process.env.PORT || 5060
 
-const {Nuxt, Builder, Generator} = require('nuxt')
+const { Nuxt, Builder, Generator } = require('nuxt')
 const request = require('request-promise-native')
 const fs = require('fs')
 
 describe('Module', () => {
+  const nuxtConfig = require('./fixture/nuxt.config')
   let nuxtBuild = async () => {
-    let nuxt = new Nuxt(require('./fixture/nuxt.config'))
+    let nuxt = new Nuxt(nuxtConfig)
     let builder = new Builder(nuxt)
     await builder.build()
     return nuxt
   }
 
   let nuxtGenerate = async () => {
-    let nuxt = new Nuxt(require('./fixture/nuxt.config'))
+    let nuxt = new Nuxt(nuxtConfig)
     let builder = new Builder(nuxt)
     let generator = new Generator(nuxt, builder)
     await generator.generate()
@@ -45,7 +46,7 @@ describe('Module', () => {
   }
 
   describe('/de/foo', () => {
-    describeUrl('/de/foo', (html) => {
+    describeUrl('/de/foo', html => {
       expect(html).toContain('Foo page')
       expect(html).toContain('Hallo Welt!')
       expect(html).toMatch(/<a href="\/de\/foo".*?>foo<\/a>/)
@@ -57,7 +58,7 @@ describe('Module', () => {
   })
 
   describe('/en/foo', () => {
-    describeUrl('/en/foo', (html) => {
+    describeUrl('/en/foo', html => {
       expect(html).toContain('Foo page')
       expect(html).toContain('Hello World!')
       expect(html).toMatch(/<a href="\/en\/foo".*?>foo<\/a>/)
@@ -69,7 +70,7 @@ describe('Module', () => {
   })
 
   describe('/foo', () => {
-    describeUrl('/foo', (html) => {
+    describeUrl('/foo', html => {
       expect(html).toContain('Foo page')
       expect(html).toContain('Hello World!')
       expect(html).toMatch(/<a href="\/en\/foo".*?>foo<\/a>/)
@@ -91,13 +92,14 @@ describe('Module', () => {
   })
 
   describe('/de/dynamic/44', () => {
-    describeUrl('/de/dynamic/44', (html) => {
+    describeUrl('/de/dynamic/44', html => {
       expect(html).toContain('Dynamic page: 44')
       expect(html).toContain('Hallo Welt!')
       expect(html).toMatch(new RegExp('<link [^>]*href="/en/dynamic/44" [^>]*rel="alternate" [^>]*hreflang="en"[^>]*>'))
       expect(html).toMatch(new RegExp('<link [^>]*href="/de/dynamic/44" [^>]*rel="alternate" [^>]*hreflang="de"[^>]*>'))
-      expect(html).toMatch(new RegExp('<link [^>]*href="/dynamic/44" [^>]*rel="alternate" [^>]*hreflang="x-default"[^>]*>'))
+      expect(html).toMatch(
+        new RegExp('<link [^>]*href="/dynamic/44" [^>]*rel="alternate" [^>]*hreflang="x-default"[^>]*>')
+      )
     })
   })
-
 })
