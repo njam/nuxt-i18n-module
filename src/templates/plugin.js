@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import NuxtI18nLink from '~/modules/nuxt-i18n-module/src/components/NuxtI18nLink.vue'
+import NuxtI18nLink from './components/i18n.NuxtI18nLink.vue'
 import './i18n.middleware'
 
 Vue.use(VueI18n)
@@ -34,6 +34,17 @@ export default ({ app, store }) => {
   })
   Vue.availableLanguages = options.languages
 
+  let redirectDefaultLang = {}
+  if (options.redirectDefaultLang) {
+    redirectDefaultLang = {
+      beforeMount () {
+        if (!this.$options.parent && !this.$route.params.lang) {
+          this.$router.replace({ params: { lang: this.detectLanguage() } })
+        }
+      }
+    }
+  }
+
   Vue.use({
     install (app) {
       app.mixin({
@@ -60,12 +71,7 @@ export default ({ app, store }) => {
             return language || options.defaultLanguage
           }
         },
-        beforeMount () {
-          let isRoot = !this.$options.parent
-          if (isRoot && !this.$route.params.lang) {
-            this.$router.replace({ params: { lang: this.detectLanguage() } })
-          }
-        },
+        ...redirectDefaultLang,
         transition (to, from) {
           if (from && from['name'] === to['name']) {
             // Disable page transition when switching language
@@ -95,7 +101,7 @@ export default ({ app, store }) => {
     }
   })
 
-  app.component('NuxtI18nLink', NuxtI18nLink)
+  Vue.component('NuxtI18nLink', NuxtI18nLink)
 }
 
 function registerStoreModule (store, name, definition) {

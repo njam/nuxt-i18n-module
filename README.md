@@ -38,7 +38,8 @@ Those routes will also be generated when rendering in SSR mode.
       "nuxt-i18n-module",
       {
         languages: ["en", "de"],
-        defaultLanguage: "en"
+        defaultLanguage: "en",
+        redirectDefaultLang: false
       }
     ]
   ];
@@ -56,8 +57,9 @@ Those routes will also be generated when rendering in SSR mode.
 
 ### Options of module
 
-- `languages` : An list available languages
-- `defaultLanguage` : The default language
+- **languages** (default: `[en]`) : An list available languages
+- **defaultLanguage** (default: `en`) : The default language
+- **redirectDefaultLang** (default: `true`) : Status if user is redirect to default language url (eg: if this is set to `false`, when `defaultLanguage` is `en` and url dont have language like `/foo` the user is not redirect to `/en/foo`)
 
 ### Usage in components
 
