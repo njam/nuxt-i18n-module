@@ -3,7 +3,8 @@ const pathToRegexp = require('path-to-regexp')
 
 module.exports = function (moduleOptions) {
   const defaults = {
-    languages: ['en']
+    languages: ['en'],
+    redirectDefaultLang: true
   }
   moduleOptions = Object.assign({}, defaults, moduleOptions)
   if (typeof moduleOptions.defaultLanguage === 'undefined') moduleOptions.defaultLanguage = moduleOptions.languages[0]
@@ -24,6 +25,12 @@ module.exports = function (moduleOptions) {
   this.addPlugin({
     src: resolve(__dirname, './templates/plugin.js'),
     fileName: 'i18n.plugin.js',
+    options: moduleOptions
+  })
+
+  this.addTemplate({
+    src: resolve(__dirname, './templates/components/NuxtI18nLink.vue'),
+    fileName: 'components/i18n.NuxtI18nLink.vue',
     options: moduleOptions
   })
 
