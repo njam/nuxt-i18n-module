@@ -51,9 +51,8 @@ export default ({ app, store }) => {
         methods: {
           localePath (url) {
             let lang = this.$i18n.locale
-            if (lang) {
-              url = '/' + lang + url
-            }
+            if (!options.redirectDefaultLang && lang === options.defaultLanguage) return url
+            if (lang) url = '/' + lang + url
             return url
           },
           detectLanguage () {
