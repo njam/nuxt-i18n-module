@@ -16,6 +16,13 @@ module.exports = function (moduleOptions) {
   })
   router.middleware.push('i18n')
 
+  // Add component:
+  this.addTemplate({
+    src: resolve(__dirname, './templates/components/i18n-switcher.vue'),
+    fileName: 'components/i18n-switcher.vue',
+    options: moduleOptions
+  })
+
   // Add plugin
   this.addPlugin({
     src: resolve(__dirname, './templates/plugin.js'),

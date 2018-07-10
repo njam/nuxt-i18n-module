@@ -48,17 +48,26 @@ For example:
 }
 ```
 
-### Usage in components
-To point to a URL in the currently active language, use `localePath()`:
+### Usage
+
+#### Localized Links (`localePath()`)
+URLs within the application need to be localized.
+To link to a URL in the current language, use `localePath()`:
 ```html
 <nuxt-link :to="localePath('/foo')">Foo</nuxt-link>
 ```
 
-To translate a phrase, use vue-i18n's `$t()`:
+#### Translate Phrases (`$t()`)
+To translate a phrase, use [vue-i18n's `$t()`](https://kazupon.github.io/vue-i18n/api/#t):
 ```html
 <h1>{{ $t('hello-world') }}</h1>
 ```
 
+#### Language Switcher (`i18n-switcher`)
+The _language switcher_ prints a list of links leading to translations of the current page in other languages:
+```html
+<i18n-switcher/>
+```
 
 Development
 -----------

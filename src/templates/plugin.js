@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import './i18n.middleware'
+import I18nSwitcher from './components/i18n-switcher.vue'
 
 Vue.use(VueI18n)
 
@@ -103,6 +104,8 @@ export default ({app, store}) => {
       })
     }
   })
+
+  Vue.component('i18n-switcher', I18nSwitcher)
 }
 
 function registerStoreModule (store, name, definition) {
