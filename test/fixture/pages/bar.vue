@@ -7,6 +7,6 @@
 
 <script>
   export default {
-    name: "Bar-page"
+    name: 'Bar-page'
   }
 </script>

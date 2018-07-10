@@ -7,6 +7,6 @@
 
 <script>
   export default {
-    name: "Dynamic-page"
+    name: 'Dynamic-page'
   }
 </script>
