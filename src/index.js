@@ -20,12 +20,6 @@ module.exports = function (moduleOptions) {
     options: moduleOptions
   })
 
-  this.addTemplate({
-    src: resolve(__dirname, './templates/components/NuxtI18nLink.vue'),
-    fileName: 'components/i18n.NuxtI18nLink.vue',
-    options: moduleOptions
-  })
-
   // Add routes for *routing*
   this.extendRoutes(function (routes) {
     routes.sort((a, b) => {

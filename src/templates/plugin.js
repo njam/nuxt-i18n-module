@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import NuxtI18nLink from './components/i18n.NuxtI18nLink.vue'
 import './i18n.middleware'
 
 Vue.use(VueI18n)
@@ -32,7 +31,6 @@ export default ({app, store}) => {
     messages,
     silentTranslationWarn: true
   })
-  Vue.availableLanguages = options.languages
 
   let redirectDefaultLang = {}
   if (options.redirectDefaultLang) {
@@ -107,8 +105,6 @@ export default ({app, store}) => {
       })
     }
   })
-
-  Vue.component('NuxtI18nLink', NuxtI18nLink)
 }
 
 function registerStoreModule (store, name, definition) {
