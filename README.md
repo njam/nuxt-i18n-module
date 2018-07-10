@@ -28,8 +28,8 @@ Those routes will also be generated when rendering in SSR mode.
 
 ### Setup
 
-- Add `nuxt-i18n-module` dependency using yarn or npm to your project
-- Add `nuxt-i18n-module` to `modules` section of `nuxt.config.js` and define the languages to use:
+- Add `nuxt-i18n-module` dependency to your project using yarn or npm
+- Add `nuxt-i18n-module` to the `modules` section of `nuxt.config.js` and configure as desired:
 
 ```js
 {
@@ -37,9 +37,7 @@ Those routes will also be generated when rendering in SSR mode.
     [
       "nuxt-i18n-module",
       {
-        languages: ["en", "de"],
-        defaultLanguage: "en",
-        redirectDefaultLang: false
+        languages: ["en", "de"]
       }
     ]
   ];
@@ -55,11 +53,11 @@ Those routes will also be generated when rendering in SSR mode.
 }
 ```
 
-### Options of module
+### Options
 
-- **languages** (default: `[en]`) : An list available languages
-- **defaultLanguage** (default: `en`) : The default language
-- **redirectDefaultLang** (default: `true`) : Status if user is redirect to default language url (eg: if this is set to `false`, when `defaultLanguage` is `en` and url dont have language like `/foo` the user is not redirect to `/en/foo`)
+- **languages** (default: `[en]`): List of languages
+- **defaultLanguage** (default: first language): Default language 
+- **redirectDefaultLang** (default: `true`): Whether to redirect to language-specific URLs when loading pages in the default language (e.g. if a user navigates to `/foo` and this is set to _true_, then he will get redirected to `/en/foo`. If this is instead set to _false_, then he stays on `/foo`.)
 
 ### Usage in components
 
@@ -86,7 +84,7 @@ yarn install
 Run tests:
 
 ```
-npm run test
+yarn run test
 ```
 
 Release a new version:

@@ -5,7 +5,7 @@ import './i18n.middleware'
 
 Vue.use(VueI18n)
 
-export default ({ app, store }) => {
+export default ({app, store}) => {
   registerStoreModule(store, 'i18n', {
     namespaced: true,
     state: () => ({
@@ -39,7 +39,7 @@ export default ({ app, store }) => {
     redirectDefaultLang = {
       beforeMount () {
         if (!this.$options.parent && !this.$route.params.lang) {
-          this.$router.replace({ params: { lang: this.detectLanguage() } })
+          this.$router.replace({params: {lang: this.detectLanguage()}})
         }
       }
     }
@@ -51,15 +51,23 @@ export default ({ app, store }) => {
         methods: {
           localePath (url) {
             let lang = this.$i18n.locale
-            if (!options.redirectDefaultLang && lang === options.defaultLanguage) return url
-            if (lang) url = '/' + lang + url
+            if (lang === options.defaultLanguage && !options.redirectDefaultLang) {
+              return url
+            }
+            if (lang) {
+              url = '/' + lang + url
+            }
             return url
           },
           detectLanguage () {
             let languageList = []
             if (typeof navigator !== 'undefined') {
-              if (navigator.language) languageList.unshift(navigator.language.substring(0, 2))
-              if (navigator.userLanguage) languageList.unshift(navigator.userLanguage.substring(0, 2))
+              if (navigator.language) {
+                languageList.unshift(navigator.language.substring(0, 2))
+              }
+              if (navigator.userLanguage) {
+                languageList.unshift(navigator.userLanguage.substring(0, 2))
+              }
 
               // Clean duplicate entries
               languageList = Array.from(new Set(languageList))
@@ -74,7 +82,7 @@ export default ({ app, store }) => {
         transition (to, from) {
           if (from && from['name'] === to['name']) {
             // Disable page transition when switching language
-            return { duration: 0, css: false }
+            return {duration: 0, css: false}
           }
           return {}
         },
@@ -86,7 +94,7 @@ export default ({ app, store }) => {
           let alternateLinks = languageParamList.map(languageParam => {
             let hreflang = languageParam || 'x-default'
             return {
-              href: this.$router.resolve({ params: { lang: languageParam } }).href,
+              href: this.$router.resolve({params: {lang: languageParam}}).href,
               rel: 'alternate',
               hreflang: hreflang,
               hid: 'alternate-lang-' + hreflang

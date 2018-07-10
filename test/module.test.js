@@ -1,7 +1,7 @@
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000
 process.env.PORT = process.env.PORT || 5060
 
-const { Nuxt, Builder, Generator } = require('nuxt')
+const {Nuxt, Builder, Generator} = require('nuxt')
 const request = require('request-promise-native')
 const fs = require('fs')
 
@@ -97,9 +97,7 @@ describe('Module', () => {
       expect(html).toContain('Hallo Welt!')
       expect(html).toMatch(new RegExp('<link [^>]*href="/en/dynamic/44" [^>]*rel="alternate" [^>]*hreflang="en"[^>]*>'))
       expect(html).toMatch(new RegExp('<link [^>]*href="/de/dynamic/44" [^>]*rel="alternate" [^>]*hreflang="de"[^>]*>'))
-      expect(html).toMatch(
-        new RegExp('<link [^>]*href="/dynamic/44" [^>]*rel="alternate" [^>]*hreflang="x-default"[^>]*>')
-      )
+      expect(html).toMatch(new RegExp('<link [^>]*href="/dynamic/44" [^>]*rel="alternate" [^>]*hreflang="x-default"[^>]*>'))
     })
   })
 })

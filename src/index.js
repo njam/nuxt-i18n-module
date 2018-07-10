@@ -1,16 +1,8 @@
-const { resolve } = require('path')
+const {resolve} = require('path')
 const pathToRegexp = require('path-to-regexp')
 
 module.exports = function (moduleOptions) {
-  const defaults = {
-    languages: ['en'],
-    redirectDefaultLang: true
-  }
-  moduleOptions = Object.assign({}, defaults, moduleOptions)
-  if (typeof moduleOptions.defaultLanguage === 'undefined') moduleOptions.defaultLanguage = moduleOptions.languages[0]
-  else if (moduleOptions.languages.indexOf(moduleOptions.defaultLanguage) === -1) {
-    moduleOptions.languages.push(moduleOptions.defaultLanguage)
-  }
+  moduleOptions = parseModuleOptions(moduleOptions)
   let router = this.options.router
 
   // Add middleware
@@ -78,6 +70,30 @@ module.exports = function (moduleOptions) {
   })
 
   /**
+   * @param {Object} options
+   * @returns {Object}
+   */
+  function parseModuleOptions (options) {
+    const defaults1 = {
+      languages: ['en'],
+      redirectDefaultLang: true,
+    }
+    const defaults2 = {
+      defaultLanguage: options.languages[0],
+    }
+
+    options = Object.assign(defaults1, moduleOptions)
+    if (options.languages.length === 0) {
+      throw new Error('No languages are defined.')
+    }
+    options = Object.assign(defaults2, options)
+    if (options.languages.indexOf(options.defaultLanguage) === -1) {
+      throw new Error(`Default language (${options.defaultLanguage}) not present in list of languages.`)
+    }
+    return options
+  }
+
+  /**
    * @param {string} path
    * @returns {string}
    */
@@ -95,8 +111,8 @@ module.exports = function (moduleOptions) {
     let languageParamList = moduleOptions.languages.concat(null)
     return languageParamList.map(languageParam => {
       return {
-        route: toPath({ lang: languageParam }),
-        payload: Object.assign({ lang: languageParam }, payload)
+        route: toPath({lang: languageParam}),
+        payload: Object.assign({lang: languageParam}, payload)
       }
     })
   }
