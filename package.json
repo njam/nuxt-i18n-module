@@ -6,13 +6,13 @@
   "repository": "https://github.com/njam/nuxt-i18n-module",
   "homepage": "https://github.com/njam/nuxt-i18n-module",
   "dependencies": {
-    "path-to-regexp": "^2.1.0",
-    "vue-i18n": "^7.3.2"
+    "path-to-regexp": "^2.2.1",
+    "vue-i18n": "^8.0.0"
   },
   "devDependencies": {
-    "jest": "^21.2.1",
-    "nuxt": "^1.4.0",
-    "request": "^2.83.0",
+    "jest": "^23.2.0",
+    "nuxt": "^1.4.1",
+    "request": "^2.87.0",
     "request-promise-native": "^1.0.5"
   },
   "jest": {

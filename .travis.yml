@@ -5,7 +5,7 @@ node_js:
   - "9"
 
 install: yarn install
-script: npm test
+script: yarn run test
 
 deploy:
   provider: npm
