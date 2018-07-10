@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
+import NuxtI18nLink from './components/i18n.NuxtI18nLink.vue'
 import './i18n.middleware'
 
 Vue.use(VueI18n)
 
-export default ({app, store}) => {
+export default ({ app, store }) => {
   registerStoreModule(store, 'i18n', {
     namespaced: true,
     state: () => ({
@@ -22,15 +23,27 @@ export default ({app, store}) => {
   })
 
   let messages = {}
-  options.languages.forEach((lang) => {
+  options.languages.forEach(lang => {
     messages[lang] = require('~/assets/locale/' + lang + '.json')
   })
   app.i18n = new VueI18n({
     locale: store.state['i18n'].language,
-    fallbackLocale: options.languages[0],
-    messages: messages,
+    fallbackLocale: options.defaultLanguage,
+    messages,
     silentTranslationWarn: true
   })
+  Vue.availableLanguages = options.languages
+
+  let redirectDefaultLang = {}
+  if (options.redirectDefaultLang) {
+    redirectDefaultLang = {
+      beforeMount () {
+        if (!this.$options.parent && !this.$route.params.lang) {
+          this.$router.replace({ params: { lang: this.detectLanguage() } })
+        }
+      }
+    }
+  }
 
   Vue.use({
     install (app) {
@@ -38,37 +51,30 @@ export default ({app, store}) => {
         methods: {
           localePath (url) {
             let lang = this.$i18n.locale
-            if (lang) {
-              url = '/' + lang + url
-            }
+            if (!options.redirectDefaultLang && lang === options.defaultLanguage) return url
+            if (lang) url = '/' + lang + url
             return url
           },
           detectLanguage () {
             let languageList = []
             if (typeof navigator !== 'undefined') {
-              if (navigator.userLanguage) {
-                languageList.unshift(navigator.userLanguage.substring(0, 2))
-              }
-              if (navigator.language) {
-                languageList.unshift(navigator.language.substring(0, 2))
-              }
+              if (navigator.language) languageList.unshift(navigator.language.substring(0, 2))
+              if (navigator.userLanguage) languageList.unshift(navigator.userLanguage.substring(0, 2))
+
+              // Clean duplicate entries
+              languageList = Array.from(new Set(languageList))
             }
-            let language = languageList.find((language) => {
-              return (options.languages.indexOf(language) !== -1)
+            let language = languageList.find(language => {
+              return options.languages.indexOf(language) !== -1
             })
-            return language || options.languages[0]
+            return language || options.defaultLanguage
           }
         },
-        beforeMount () {
-          let isRoot = !this.$options.parent
-          if (isRoot && !this.$route.params.lang) {
-            this.$router.replace({params: {lang: this.detectLanguage()}})
-          }
-        },
+        ...redirectDefaultLang,
         transition (to, from) {
           if (from && from['name'] === to['name']) {
             // Disable page transition when switching language
-            return {duration: 0, css: false}
+            return { duration: 0, css: false }
           }
           return {}
         },
@@ -77,10 +83,13 @@ export default ({app, store}) => {
             return
           }
           let languageParamList = options.languages.concat(null)
-          let alternateLinks = languageParamList.map((languageParam) => {
-            let hreflang = (languageParam ? languageParam : 'x-default')
+          if (!options.redirectDefaultLang) {
+            languageParamList.splice(languageParamList.indexOf(options.defaultLanguage), 1)
+          }
+          let alternateLinks = languageParamList.map(languageParam => {
+            let hreflang = languageParam || 'x-default'
             return {
-              href: this.$router.resolve({params: {lang: languageParam}}).href,
+              href: this.$router.resolve({ params: { lang: languageParam } }).href,
               rel: 'alternate',
               hreflang: hreflang,
               hid: 'alternate-lang-' + hreflang
@@ -93,6 +102,8 @@ export default ({app, store}) => {
       })
     }
   })
+
+  Vue.component('NuxtI18nLink', NuxtI18nLink)
 }
 
 function registerStoreModule (store, name, definition) {
@@ -108,4 +119,4 @@ function registerStoreModule (store, name, definition) {
   store.registerModule(name, definition)
 }
 
-const options = <%= serialize(options) %>
+const options = JSON.parse('<%= serialize(options) %>')

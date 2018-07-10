@@ -1,11 +1,16 @@
-const {resolve} = require('path')
+const { resolve } = require('path')
 const pathToRegexp = require('path-to-regexp')
 
 module.exports = function (moduleOptions) {
   const defaults = {
-    languages: ['en']
+    languages: ['en'],
+    redirectDefaultLang: true
   }
   moduleOptions = Object.assign({}, defaults, moduleOptions)
+  if (typeof moduleOptions.defaultLanguage === 'undefined') moduleOptions.defaultLanguage = moduleOptions.languages[0]
+  else if (moduleOptions.languages.indexOf(moduleOptions.defaultLanguage) === -1) {
+    moduleOptions.languages.push(moduleOptions.defaultLanguage)
+  }
   let router = this.options.router
 
   // Add middleware
@@ -20,6 +25,12 @@ module.exports = function (moduleOptions) {
   this.addPlugin({
     src: resolve(__dirname, './templates/plugin.js'),
     fileName: 'i18n.plugin.js',
+    options: moduleOptions
+  })
+
+  this.addTemplate({
+    src: resolve(__dirname, './templates/components/NuxtI18nLink.vue'),
+    fileName: 'components/i18n.NuxtI18nLink.vue',
     options: moduleOptions
   })
 
@@ -53,9 +64,9 @@ module.exports = function (moduleOptions) {
      * and add them for 'generation'.
      */
     let routesRouter = flatRoutes(router.routes)
-    routesRouter = routesRouter.filter((route) => {
+    routesRouter = routesRouter.filter(route => {
       let tokens = pathToRegexp.parse(route)
-      let params = tokens.filter((token) => typeof token === 'object')
+      let params = tokens.filter(token => typeof token === 'object')
       return params.length === 1 && params[0].name === 'lang'
     })
     routesRouter.forEach(routeWithLang => {
@@ -82,10 +93,13 @@ module.exports = function (moduleOptions) {
   function interpolateLangInRoute (path, payload) {
     let toPath = pathToRegexp.compile(path)
     let languageParamList = moduleOptions.languages.concat(null)
+    if (!moduleOptions.redirectDefaultLang) {
+      languageParamList.splice(languageParamList.indexOf(moduleOptions.defaultLanguage), 1)
+    }
     return languageParamList.map(languageParam => {
       return {
-        route: toPath({lang: languageParam}),
-        payload: Object.assign({lang: languageParam}, payload)
+        route: toPath({ lang: languageParam }),
+        payload: Object.assign({ lang: languageParam }, payload)
       }
     })
   }
@@ -100,5 +114,4 @@ module.exports = function (moduleOptions) {
     })
     return routes
   }
-
 }

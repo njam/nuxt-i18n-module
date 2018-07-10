@@ -5,14 +5,16 @@ module.exports = {
   buildDir: tmpdir + '/nuxt-build',
   dev: false,
   modules: [
-    ['@@', {
-      languages: ['en', 'de']
-    }]
+    [
+      '@@',
+      {
+        languages: ['en', 'de'],
+        defaultLanguage: 'en'
+      }
+    ]
   ],
   generate: {
     dir: tmpdir + '/nuxt-generate',
-    routes: [
-      '/dynamic/44'
-    ]
+    routes: ['/dynamic/44']
   }
 }

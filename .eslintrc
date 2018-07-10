@@ -1,0 +1,10 @@
+{
+  "extends": ["plugin:vue/essential", "standard"],
+  "plugins": ["jest", "vue"],
+  "rules": {
+    "no-path-concat": "warn"
+  },
+  "env": {
+    "jest/globals": true
+  }
+}
