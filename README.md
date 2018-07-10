@@ -69,7 +69,7 @@ yarn install
 
 Run tests:
 ```
-npm run test
+yarn run test
 ```
 
 Release a new version:
