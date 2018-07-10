@@ -83,6 +83,7 @@ export default ({ app, store }) => {
             return
           }
           let languageParamList = options.languages.concat(null)
+          languageParamList.splice(languageParamList.indexOf(options.defaultLanguage), 1)
           let alternateLinks = languageParamList.map(languageParam => {
             let hreflang = languageParam || 'x-default'
             return {
