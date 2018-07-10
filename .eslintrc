@@ -1,6 +1,6 @@
 {
-  "extends": "standard",
-  "plugins": ["jest"],
+  "extends": ["plugin:vue/essential", "standard"],
+  "plugins": ["jest", "vue"],
   "rules": {
     "no-path-concat": "warn"
   },

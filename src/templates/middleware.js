@@ -13,4 +13,4 @@ middleware['i18n'] = function ({ isHMR, app, store, route, params, error, redire
   store.commit('i18n/setLanguage', lang)
 }
 
-const options = <%= serialize(options) %>
+const options = JSON.parse('<%= serialize(options) %>')

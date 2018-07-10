@@ -116,4 +116,4 @@ function registerStoreModule (store, name, definition) {
   store.registerModule(name, definition)
 }
 
-const options = <%= serialize(options) %>
+const options = JSON.parse('<%= serialize(options) %>')
