@@ -48,9 +48,11 @@ export default ({app, store}) => {
             if (typeof navigator !== 'undefined') {
               if (navigator.userLanguage) {
                 languageList.unshift(navigator.userLanguage.substring(0, 2))
+                languageList.unshift(navigator.userLanguage)
               }
               if (navigator.language) {
                 languageList.unshift(navigator.language.substring(0, 2))
+                languageList.unshift(navigator.language)
               }
             }
             let language = languageList.find((language) => {
