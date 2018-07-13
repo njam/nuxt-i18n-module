@@ -44,21 +44,29 @@ export default ({app, store}) => {
             return url
           },
           detectLanguage () {
-            let languageList = []
+            let languageBrowserList = []
             if (typeof navigator !== 'undefined') {
               if (navigator.userLanguage) {
-                languageList.unshift(navigator.userLanguage.substring(0, 2))
-                languageList.unshift(navigator.userLanguage)
+                languageBrowserList.unshift(navigator.userLanguage)
               }
               if (navigator.language) {
-                languageList.unshift(navigator.language.substring(0, 2))
-                languageList.unshift(navigator.language)
+                languageBrowserList.unshift(navigator.language)
               }
             }
-            let language = languageList.find((language) => {
-              return (options.languages.indexOf(language) !== -1)
-            })
-            return language || options.languages[0]
+
+            let languageMatchFull, languageMatchPartial
+            for (let language of options.languages) {
+              for (let languageBrowser of languageBrowserList) {
+                if (languageBrowser.toLowerCase().indexOf(language.toLowerCase()) === 0) {
+                  languageMatchFull = language
+                }
+                if (language.toLowerCase().indexOf(languageBrowser.toLowerCase()) === 0) {
+                  languageMatchPartial = language
+                }
+              }
+            }
+
+            return languageMatchFull || languageMatchPartial || options.languages[0]
           }
         },
         beforeMount () {
