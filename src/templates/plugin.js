@@ -89,7 +89,7 @@ export default ({app, store}) => {
           }
           let languageParamList = options.languages.concat(null)
           let alternateLinks = languageParamList.map((languageParam) => {
-            let hreflang = (languageParam ? languageParam : 'x-default')
+            let hreflang = languageParam || 'x-default'
             return {
               href: this.$router.resolve({params: {lang: languageParam}}).href,
               rel: 'alternate',
@@ -121,4 +121,4 @@ function registerStoreModule (store, name, definition) {
   store.registerModule(name, definition)
 }
 
-const options = <%= serialize(options) %>
+const options = JSON.parse('<%= serialize(options) %>')
