@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "standard",
+    "plugin:import/warnings",
+    "plugin:promise/recommended",
+    "plugin:vue/essential"
+  ]
+}

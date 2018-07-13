@@ -1,7 +1,7 @@
 <template>
-  <nav class="language-switcher">
-    <template v-for="(lang, i) in Object.keys($i18n.messages)">
+  <ul class="language-switcher">
+    <li v-for="(lang) in Object.keys($i18n.messages)" :key="lang">
       <nuxt-link :to="{ params: {lang: lang} }" exact>{{ lang }}</nuxt-link>
-    </template>
-  </nav>
+    </li>
+  </ul>
 </template>
