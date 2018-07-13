@@ -1,6 +1,6 @@
 {
   "name": "nuxt-i18n-module",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "GPL-3.0",
   "main": "src/index.js",
   "repository": "https://github.com/njam/nuxt-i18n-module",
