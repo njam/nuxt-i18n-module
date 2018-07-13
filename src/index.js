@@ -2,10 +2,7 @@ const {resolve} = require('path')
 const pathToRegexp = require('path-to-regexp')
 
 module.exports = function (moduleOptions) {
-  const defaults = {
-    languages: ['en']
-  }
-  moduleOptions = Object.assign({}, defaults, moduleOptions)
+  moduleOptions = parseModuleOptions(moduleOptions)
   let router = this.options.router
 
   // Add middleware
@@ -72,6 +69,28 @@ module.exports = function (moduleOptions) {
     // Replace elements in `routes` with elements from `routesToGenerate`
     routes.splice(0, routes.length, ...routesToGenerate)
   })
+
+  /**
+   * @param {Object} options
+   * @returns {Object}
+   */
+  function parseModuleOptions (options) {
+    const defaults1 = {
+      languages: ['en']
+    }
+    options = Object.assign(defaults1, options)
+    if (options.languages.length < 1) {
+      throw new Error('At least one language should be configured.')
+    }
+    const defaults2 = {
+      defaultLanguage: options.languages.find(e => !!e)
+    }
+    options = Object.assign(defaults2, options)
+    if (!options.languages.includes(options.defaultLanguage)) {
+      throw new Error(`Default language "${options.defaultLanguage}" must be included in list of languages.`)
+    }
+    return options
+  }
 
   /**
    * @param {string} path
