@@ -40,6 +40,10 @@ Installation & Configuration
   ]
 }
 ```
+The available options are:
+- **languages** (default: `[en]`): List of languages
+- **dateTimeFormats** (default: `{}`): The formats for date time
+- **numberFormats** (default: `{}`): The formats for number
 - Create files `assets/locale/en.json` and `assets/locale/de.json` with your global translation phrases.
 For example:
 ```json

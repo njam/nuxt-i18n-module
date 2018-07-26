@@ -30,6 +30,8 @@ export default ({app, store}) => {
     locale: store.state['i18n'].language,
     fallbackLocale: options.languages[0],
     messages: messages,
+    dateTimeFormats: options.dateTimeFormats || {},
+    numberFormats: options.numberFormats || {},
     silentTranslationWarn: true
   })
 
