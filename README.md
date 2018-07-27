@@ -28,9 +28,10 @@ Those routes will also be generated when rendering in SSR mode.
 Installation & Configuration
 ----------------------------
 
-### Installation & Configuration
-1: Add `nuxt-i18n-module` dependency using yarn or npm to your project
-2: Add `nuxt-i18n-module` to `modules` section of `nuxt.config.js` and define the languages to use:
+### Setup
+1: Add `nuxt-i18n-module` dependency to your project using yarn or npm.
+
+2: Add `nuxt-i18n-module` to the `modules` section of `nuxt.config.js` and configure as desired:
 ```js
 {
   modules: [
@@ -42,6 +43,7 @@ Installation & Configuration
 ```
 The available options are:
 - **languages** (default: `[en]`): List of languages
+- **defaultLanguage** (default: first language): The default language
 - **dateTimeFormats** (default: `{}`): The formats for date time
 - **numberFormats** (default: `{}`): The formats for number
 
