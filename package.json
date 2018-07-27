@@ -6,8 +6,8 @@
   "repository": "https://github.com/njam/nuxt-i18n-module",
   "homepage": "https://github.com/njam/nuxt-i18n-module",
   "dependencies": {
-    "path-to-regexp": "^2.1.0",
-    "vue-i18n": "^7.3.2"
+    "path-to-regexp": "^2",
+    "vue-i18n": "^7"
   },
   "devDependencies": {
     "jest": "^21.2.1",
