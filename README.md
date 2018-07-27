@@ -44,8 +44,8 @@ Installation & Configuration
 The available options are:
 - **languages** (default: `[en]`): List of languages
 - **defaultLanguage** (default: first language): The default language
-- **dateTimeFormats** (default: `{}`): The formats for date time
-- **numberFormats** (default: `{}`): The formats for number
+- **dateTimeFormats** (default: `{}`): The formats for date time, see [vue-i18n](https://kazupon.github.io/vue-i18n/api/#datetimeformats)
+- **numberFormats** (default: `{}`): The formats for number, see [vue-i18n](https://kazupon.github.io/vue-i18n/api/#numberformats)
 
 3: Create files `assets/locale/en.json` and `assets/locale/de.json` with your global translation phrases.
 For example:

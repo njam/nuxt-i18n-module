@@ -76,7 +76,9 @@ module.exports = function (moduleOptions) {
    */
   function parseModuleOptions (options) {
     const defaults1 = {
-      languages: ['en']
+      languages: ['en'],
+      dateTimeFormats: {},
+      numberFormats: {}
     }
     options = Object.assign(defaults1, options)
     if (options.languages.length < 1) {
