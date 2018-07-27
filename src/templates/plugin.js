@@ -28,7 +28,7 @@ export default ({app, store}) => {
   })
   app.i18n = new VueI18n({
     locale: store.state['i18n'].language,
-    fallbackLocale: options.languages[0],
+    fallbackLocale: options.defaultLanguage,
     messages: messages,
     silentTranslationWarn: true
   })
@@ -67,7 +67,7 @@ export default ({app, store}) => {
               }
             }
 
-            return languageMatchFull || languageMatchPartial || options.languages[0]
+            return languageMatchFull || languageMatchPartial || options.defaultLanguage
           }
         },
         beforeMount () {
