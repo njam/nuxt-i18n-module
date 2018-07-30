@@ -35,12 +35,26 @@ export default ({app, store}) => {
     silentTranslationWarn: true
   })
 
+  let redirectDefaultLang = {}
+  if (options.redirectDefaultLang) {
+    redirectDefaultLang = {
+      beforeMount () {
+        if (!this.$options.parent && !this.$route.params.lang) {
+          this.$router.replace({ params: { lang: this.detectLanguage() } })
+        }
+      }
+    }
+  }
+
   Vue.use({
     install (app) {
       app.mixin({
         methods: {
           localePath (url) {
             let lang = this.$i18n.locale
+            if (!options.redirectDefaultLang && lang === options.defaultLanguage) {
+              return url
+            }
             if (lang) {
               url = '/' + lang + url
             }
@@ -72,12 +86,7 @@ export default ({app, store}) => {
             return languageMatchFull || languageMatchPartial || options.defaultLanguage
           }
         },
-        beforeMount () {
-          let isRoot = !this.$options.parent
-          if (isRoot && !this.$route.params.lang) {
-            this.$router.replace({params: {lang: this.detectLanguage()}})
-          }
-        },
+        ...redirectDefaultLang,
         transition (to, from) {
           if (from && from['name'] === to['name']) {
             // Disable page transition when switching language
@@ -92,6 +101,9 @@ export default ({app, store}) => {
           let languageParamList = options.languages.concat(null)
           let alternateLinks = languageParamList.map((languageParam) => {
             let hreflang = languageParam || 'x-default'
+            if (!options.redirectDefaultLang) {
+              languageParamList.splice(languageParamList.indexOf(options.defaultLanguage), 1)
+            }
             return {
               href: this.$router.resolve({params: {lang: languageParam}}).href,
               rel: 'alternate',

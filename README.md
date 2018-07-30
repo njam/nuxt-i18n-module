@@ -20,7 +20,7 @@ Given a page "foo":
 This module will dynamically generate routes for a set of languages:
 - **/en/foo**: English version of the "foo" page.
 - **/de/foo**: German version of the "foo" page.
-- **/foo**: This page will detect the user's language on the *client side* and redirect to the appropriate language-URL.
+- **/foo**: This page will detect the user's language on the *client side* and redirect to the appropriate language-URL if `redirectDefaultLang` is set to **true**.
 
 Those routes will also be generated when rendering in SSR mode.
 
@@ -46,6 +46,7 @@ The available options are:
 - **defaultLanguage** (default: first language): The default language
 - **dateTimeFormats** (default: `{}`): The formats for date time, see [vue-i18n](https://kazupon.github.io/vue-i18n/api/#datetimeformats)
 - **numberFormats** (default: `{}`): The formats for number, see [vue-i18n](https://kazupon.github.io/vue-i18n/api/#numberformats)
+- **redirectDefaultLang** (default: `true`): Redirect default lang to localized url (eg: redirect `/` to `/en` when `en` is your default language)
 
 3: Create files `assets/locale/en.json` and `assets/locale/de.json` with your global translation phrases.
 For example:

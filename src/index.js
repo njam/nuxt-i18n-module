@@ -78,7 +78,8 @@ module.exports = function (moduleOptions) {
     const defaults1 = {
       languages: ['en'],
       dateTimeFormats: {},
-      numberFormats: {}
+      numberFormats: {},
+      redirectDefaultLang: true
     }
     options = Object.assign(defaults1, options)
     if (options.languages.length < 1) {
@@ -110,6 +111,9 @@ module.exports = function (moduleOptions) {
   function interpolateLangInRoute (path, payload) {
     let toPath = pathToRegexp.compile(path)
     let languageParamList = moduleOptions.languages.concat(null)
+    if (!moduleOptions.redirectDefaultLang) {
+      languageParamList.splice(languageParamList.indexOf(moduleOptions.defaultLanguage), 1)
+    }
     return languageParamList.map(languageParam => {
       return {
         route: toPath({lang: languageParam}),
