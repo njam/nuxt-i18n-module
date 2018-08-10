@@ -10,17 +10,17 @@
     "vue-i18n": "^7"
   },
   "devDependencies": {
-    "jest": "^21.2.1",
-    "nuxt": "^1.4.0",
-    "request": "^2.83.0",
-    "request-promise-native": "^1.0.5",
     "eslint": "^5.1.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
-    "eslint-plugin-vue": "^4.5.0"
+    "eslint-plugin-vue": "^4.5.0",
+    "jest": "^23.4",
+    "nuxt": "^1.4.0",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
   },
   "jest": {
     "testEnvironment": "node",
