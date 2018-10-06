@@ -18,7 +18,7 @@
     "eslint-plugin-standard": "^3",
     "eslint-plugin-vue": "^4",
     "jest": "^23",
-    "nuxt": "^1",
+    "nuxt": "^2",
     "request": "^2",
     "request-promise-native": "^1"
   },
