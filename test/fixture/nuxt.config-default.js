@@ -2,13 +2,14 @@ module.exports = {
   srcDir: __dirname,
   dev: false,
   modules: [
-    ['@@', {
-      languages: ['en', 'de']
-    }]
+    [
+      '@@',
+      {
+        languages: ['en', 'de']
+      }
+    ]
   ],
   generate: {
-    routes: [
-      '/dynamic/44'
-    ]
+    routes: ['/dynamic/44']
   }
 }

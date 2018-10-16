@@ -1,4 +1,4 @@
-const {resolve} = require('path')
+const { resolve } = require('path')
 const pathToRegexp = require('path-to-regexp')
 
 module.exports = function (moduleOptions) {
@@ -57,9 +57,9 @@ module.exports = function (moduleOptions) {
      * and add them for 'generation'.
      */
     let routesRouter = flatRoutes(router.routes)
-    routesRouter = routesRouter.filter((route) => {
+    routesRouter = routesRouter.filter(route => {
       let tokens = pathToRegexp.parse(route)
-      let params = tokens.filter((token) => typeof token === 'object')
+      let params = tokens.filter(token => typeof token === 'object')
       return params.length === 1 && params[0].name === 'lang'
     })
     routesRouter.forEach(routeWithLang => {
@@ -116,8 +116,8 @@ module.exports = function (moduleOptions) {
     }
     return languageParamList.map(languageParam => {
       return {
-        route: toPath({lang: languageParam}),
-        payload: Object.assign({lang: languageParam}, payload)
+        route: toPath({ lang: languageParam }),
+        payload: Object.assign({ lang: languageParam }, payload)
       }
     })
   }

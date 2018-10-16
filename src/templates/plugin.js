@@ -5,7 +5,7 @@ import I18nSwitcher from './components/i18n-switcher.vue'
 
 Vue.use(VueI18n)
 
-export default ({app, store}) => {
+export default ({ app, store }) => {
   registerStoreModule(store, 'i18n', {
     namespaced: true,
     state: () => ({
@@ -23,7 +23,7 @@ export default ({app, store}) => {
   })
 
   let messages = {}
-  options.languages.forEach((lang) => {
+  options.languages.forEach(lang => {
     messages[lang] = require('~/assets/locale/' + lang + '.json')
   })
   app.i18n = new VueI18n({
@@ -90,7 +90,7 @@ export default ({app, store}) => {
         transition (to, from) {
           if (from && from['name'] === to['name']) {
             // Disable page transition when switching language
-            return {duration: 0, css: false}
+            return { duration: 0, css: false }
           }
           return {}
         },
@@ -99,13 +99,13 @@ export default ({app, store}) => {
             return
           }
           let languageParamList = options.languages.concat(null)
-          let alternateLinks = languageParamList.map((languageParam) => {
+          let alternateLinks = languageParamList.map(languageParam => {
             let hreflang = languageParam || 'x-default'
             if (!options.redirectDefaultLang) {
               languageParamList.splice(languageParamList.indexOf(options.defaultLanguage), 1)
             }
             return {
-              href: this.$router.resolve({params: {lang: languageParam}}).href,
+              href: this.$router.resolve({ params: { lang: languageParam } }).href,
               rel: 'alternate',
               hreflang: hreflang,
               hid: 'alternate-lang-' + hreflang

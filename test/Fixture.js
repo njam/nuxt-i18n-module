@@ -1,15 +1,14 @@
-const {Nuxt, Builder, Generator} = require('nuxt')
+const { Nuxt, Builder, Generator } = require('nuxt')
 const request = require('request-promise-native')
 const fs = require('fs')
 
 class Fixture {
-
   /**
    * @param {String} configName
    * @param {Number} port
    */
   constructor (configName, port) {
-    this.tmpDir = __dirname + '/tmp/' + configName
+    this.tmpDir = `${__dirname}/tmp/${configName}`
     this.buildDir = this.tmpDir + '/nuxt-build'
     this.generateDir = this.tmpDir + '/nuxt-generate'
 
@@ -56,14 +55,10 @@ class Fixture {
    */
   testUrl404 (path) {
     it('builds correctly', async () => {
-      await expect(
-        this._loadPathBuilt(path)
-      ).rejects.toThrow(/404/)
+      await expect(this._loadPathBuilt(path)).rejects.toThrow(/404/)
     })
     it('generates correctly', async () => {
-      await expect(
-        this._loadPathGenerated(path)
-      ).rejects.toThrow(/ENOENT: no such file or directory/)
+      await expect(this._loadPathGenerated(path)).rejects.toThrow(/ENOENT: no such file or directory/)
     })
   }
 
@@ -73,7 +68,7 @@ class Fixture {
    * @private
    */
   async _loadPathBuilt (path) {
-    return await request(`http://localhost:${this.port}${path}`)
+    return request(`http://localhost:${this.port}${path}`)
   }
 
   /**
@@ -84,7 +79,6 @@ class Fixture {
   async _loadPathGenerated (path) {
     return fs.readFileSync(`${this.generateDir}/${path}/index.html`, 'utf8')
   }
-
 }
 
 module.exports = Fixture
