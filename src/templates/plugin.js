@@ -101,8 +101,8 @@ export default ({ app, store }) => {
           let languageParamList = options.languages.concat(null)
           let alternateLinks = languageParamList.map(languageParam => {
             let hreflang = languageParam || 'x-default'
-            if (!options.redirectDefaultLang) {
-              languageParamList.splice(languageParamList.indexOf(options.defaultLanguage), 1)
+            if (!options.redirectDefaultLang && languageParam === options.defaultLanguage) {
+              languageParam = null
             }
             return {
               href: this.$router.resolve({ params: { lang: languageParam } }).href,

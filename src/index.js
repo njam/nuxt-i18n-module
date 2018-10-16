@@ -111,7 +111,7 @@ module.exports = function (moduleOptions) {
   function interpolateLangInRoute (path, payload) {
     let toPath = pathToRegexp.compile(path)
     let languageParamList = moduleOptions.languages.concat(null)
-    if (!moduleOptions.redirectDefaultLang) {
+    if (!moduleOptions.redirectDefaultLang && ~languageParamList.indexOf(moduleOptions.defaultLanguage)) {
       languageParamList.splice(languageParamList.indexOf(moduleOptions.defaultLanguage), 1)
     }
     return languageParamList.map(languageParam => {
