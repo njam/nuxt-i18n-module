@@ -102,7 +102,7 @@ module.exports = function (moduleOptions) {
    */
   function extendModuleOptions (options) {
     let languagesExplicit = options.languages
-    if (false === options.redirectDefaultLang) {
+    if (!options.redirectDefaultLang) {
       languagesExplicit = languagesExplicit.filter(lang => (lang !== options.defaultLanguage))
     }
     options.languagesExplicit = languagesExplicit

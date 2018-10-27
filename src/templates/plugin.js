@@ -85,11 +85,11 @@ export default ({app, store}) => {
 
             return languageMatchFull || languageMatchPartial || options.defaultLanguage
           },
-          i18nLangParam(language) {
+          i18nLangParam (language) {
             if (language === options.defaultLanguage && !options.redirectDefaultLang) {
-              return null;
+              return null
             }
-            return language;
+            return language
           }
         },
         ...redirectDefaultLang,
@@ -107,13 +107,13 @@ export default ({app, store}) => {
           let alternateLinks = options.languages.map(lang => {
             return {
               hreflang: lang,
-              param: (lang === options.defaultLanguage && !options.redirectDefaultLang) ? null : lang,
+              param: (lang === options.defaultLanguage && !options.redirectDefaultLang) ? null : lang
             }
           })
           if (options.redirectDefaultLang) {
             alternateLinks.push({
               hreflang: 'x-default',
-              param: null,
+              param: null
             })
           }
           return {
