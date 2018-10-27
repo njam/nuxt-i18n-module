@@ -20,6 +20,8 @@ describe('Fixture "default"', () => {
       expect(html).toMatch(new RegExp('<link [^>]*href="/en/foo" [^>]*rel="alternate" [^>]*hreflang="en"[^>]*>'))
       expect(html).toMatch(new RegExp('<link [^>]*href="/de/foo" [^>]*rel="alternate" [^>]*hreflang="de"[^>]*>'))
       expect(html).toMatch(new RegExp('<link [^>]*href="/foo" [^>]*rel="alternate" [^>]*hreflang="x-default"[^>]*>'))
+      expect(html).toMatch(/<a href="\/en\/foo" [^>]*class="language-switcher-link[^>]*>en<\/a>/)
+      expect(html).toMatch(/<a href="\/de\/foo" [^>]*class="language-switcher-link[^>]*>de<\/a>/)
     })
   })
 
@@ -32,6 +34,8 @@ describe('Fixture "default"', () => {
       expect(html).toMatch(new RegExp('<link [^>]*href="/en/foo" [^>]*rel="alternate" [^>]*hreflang="en"[^>]*>'))
       expect(html).toMatch(new RegExp('<link [^>]*href="/de/foo" [^>]*rel="alternate" [^>]*hreflang="de"[^>]*>'))
       expect(html).toMatch(new RegExp('<link [^>]*href="/foo" [^>]*rel="alternate" [^>]*hreflang="x-default"[^>]*>'))
+      expect(html).toMatch(/<a href="\/en\/foo" [^>]*class="language-switcher-link[^>]*>en<\/a>/)
+      expect(html).toMatch(/<a href="\/de\/foo" [^>]*class="language-switcher-link[^>]*>de<\/a>/)
     })
   })
 
@@ -44,6 +48,8 @@ describe('Fixture "default"', () => {
       expect(html).toMatch(new RegExp('<link [^>]*href="/en/foo" [^>]*rel="alternate" [^>]*hreflang="en"[^>]*>'))
       expect(html).toMatch(new RegExp('<link [^>]*href="/de/foo" [^>]*rel="alternate" [^>]*hreflang="de"[^>]*>'))
       expect(html).toMatch(new RegExp('<link [^>]*href="/foo" [^>]*rel="alternate" [^>]*hreflang="x-default"[^>]*>'))
+      expect(html).toMatch(/<a href="\/en\/foo" [^>]*class="language-switcher-link[^>]*>en<\/a>/)
+      expect(html).toMatch(/<a href="\/de\/foo" [^>]*class="language-switcher-link[^>]*>de<\/a>/)
 
       /**
        * @todo
@@ -66,6 +72,8 @@ describe('Fixture "default"', () => {
       expect(html).toMatch(
         new RegExp('<link [^>]*href="/dynamic/44" [^>]*rel="alternate" [^>]*hreflang="x-default"[^>]*>')
       )
+      expect(html).toMatch(/<a href="\/en\/dynamic\/44" [^>]*class="language-switcher-link[^>]*>en<\/a>/)
+      expect(html).toMatch(/<a href="\/de\/dynamic\/44" [^>]*class="language-switcher-link[^>]*>de<\/a>/)
     })
   })
 })
