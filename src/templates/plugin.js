@@ -5,7 +5,7 @@ import I18nSwitcher from './components/i18n-switcher.vue'
 
 Vue.use(VueI18n)
 
-export default ({ app, store }) => {
+export default ({app, store}) => {
   registerStoreModule(store, 'i18n', {
     namespaced: true,
     state: () => ({
@@ -40,7 +40,7 @@ export default ({ app, store }) => {
     redirectDefaultLang = {
       beforeMount () {
         if (!this.$options.parent && !this.$route.params.lang) {
-          this.$router.replace({ params: { lang: this.detectLanguage() } })
+          this.$router.replace({params: {lang: this.detectLanguage()}})
         }
       }
     }
@@ -90,7 +90,7 @@ export default ({ app, store }) => {
         transition (to, from) {
           if (from && from['name'] === to['name']) {
             // Disable page transition when switching language
-            return { duration: 0, css: false }
+            return {duration: 0, css: false}
           }
           return {}
         },
@@ -98,21 +98,27 @@ export default ({ app, store }) => {
           if (!this.$route) {
             return
           }
-          let languageParamList = options.languages.concat(null)
-          let alternateLinks = languageParamList.map(languageParam => {
-            let hreflang = languageParam || 'x-default'
-            if (!options.redirectDefaultLang && languageParam === options.defaultLanguage) {
-              languageParam = null
-            }
+          let alternateLinks = options.languages.map(lang => {
             return {
-              href: this.$router.resolve({ params: { lang: languageParam } }).href,
-              rel: 'alternate',
-              hreflang: hreflang,
-              hid: 'alternate-lang-' + hreflang
+              hreflang: lang,
+              param: (lang === options.defaultLanguage && !options.redirectDefaultLang) ? null : lang,
             }
           })
+          if (options.redirectDefaultLang) {
+            alternateLinks.push({
+              hreflang: 'x-default',
+              param: null,
+            })
+          }
           return {
-            link: alternateLinks
+            link: alternateLinks.map(link => {
+              return {
+                href: this.$router.resolve({params: {lang: link.param}}).href,
+                rel: 'alternate',
+                hreflang: link.hreflang,
+                hid: 'alternate-lang-' + link.hreflang
+              }
+            })
           }
         }
       })

@@ -19,6 +19,7 @@ describe('Fixture "noredir"', () => {
       expect(html).toMatch(/<a href="\/bar".*?>bar<\/a>/)
       expect(html).toMatch(new RegExp('<link [^>]*href="/foo" [^>]*rel="alternate" [^>]*hreflang="en"[^>]*>'))
       expect(html).toMatch(new RegExp('<link [^>]*href="/de/foo" [^>]*rel="alternate" [^>]*hreflang="de"[^>]*>'))
+      expect(html).not.toMatch(new RegExp('<link [^>]*hreflang="x-default"[^>]*>'))
     })
   })
 
@@ -30,6 +31,7 @@ describe('Fixture "noredir"', () => {
       expect(html).toMatch(/<a href="\/de\/bar".*?>bar<\/a>/)
       expect(html).toMatch(new RegExp('<link [^>]*href="/foo" [^>]*rel="alternate" [^>]*hreflang="en"[^>]*>'))
       expect(html).toMatch(new RegExp('<link [^>]*href="/de/foo" [^>]*rel="alternate" [^>]*hreflang="de"[^>]*>'))
+      expect(html).not.toMatch(new RegExp('<link [^>]*hreflang="x-default"[^>]*>'))
     })
   })
 
