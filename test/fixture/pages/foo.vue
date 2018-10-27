@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'Foo-page'
-  }
+export default {
+  name: 'Foo-page'
+}
 </script>

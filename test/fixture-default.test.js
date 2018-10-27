@@ -1,7 +1,6 @@
 const Fixture = require('./Fixture')
 
 describe('Fixture "default"', () => {
-
   let fixture = new Fixture('nuxt.config-default', 5060)
 
   beforeAll(async () => {
@@ -13,7 +12,7 @@ describe('Fixture "default"', () => {
   })
 
   describe('/de/foo', () => {
-    fixture.testUrl('/de/foo', (html) => {
+    fixture.testUrl('/de/foo', html => {
       expect(html).toContain('Foo page')
       expect(html).toContain('Hallo Welt!')
       expect(html).toMatch(/<a href="\/de\/foo".*?>foo<\/a>/)
@@ -25,7 +24,7 @@ describe('Fixture "default"', () => {
   })
 
   describe('/en/foo', () => {
-    fixture.testUrl('/en/foo', (html) => {
+    fixture.testUrl('/en/foo', html => {
       expect(html).toContain('Foo page')
       expect(html).toContain('Hello World!')
       expect(html).toMatch(/<a href="\/en\/foo".*?>foo<\/a>/)
@@ -37,7 +36,7 @@ describe('Fixture "default"', () => {
   })
 
   describe('/foo', () => {
-    fixture.testUrl('/foo', (html) => {
+    fixture.testUrl('/foo', html => {
       expect(html).toContain('Foo page')
       expect(html).toContain('Hello World!')
       expect(html).toMatch(/<a href="\/en\/foo".*?>foo<\/a>/)
@@ -59,12 +58,14 @@ describe('Fixture "default"', () => {
   })
 
   describe('/de/dynamic/44', () => {
-    fixture.testUrl('/de/dynamic/44', (html) => {
+    fixture.testUrl('/de/dynamic/44', html => {
       expect(html).toContain('Dynamic page: 44')
       expect(html).toContain('Hallo Welt!')
       expect(html).toMatch(new RegExp('<link [^>]*href="/en/dynamic/44" [^>]*rel="alternate" [^>]*hreflang="en"[^>]*>'))
       expect(html).toMatch(new RegExp('<link [^>]*href="/de/dynamic/44" [^>]*rel="alternate" [^>]*hreflang="de"[^>]*>'))
-      expect(html).toMatch(new RegExp('<link [^>]*href="/dynamic/44" [^>]*rel="alternate" [^>]*hreflang="x-default"[^>]*>'))
+      expect(html).toMatch(
+        new RegExp('<link [^>]*href="/dynamic/44" [^>]*rel="alternate" [^>]*hreflang="x-default"[^>]*>')
+      )
     })
   })
 })

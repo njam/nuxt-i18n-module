@@ -1,9 +1,14 @@
 {
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
   "extends": [
     "eslint:recommended",
     "standard",
     "plugin:import/warnings",
     "plugin:promise/recommended",
     "plugin:vue/essential"
-  ]
+  ],
+  "plugins": ["vue"]
 }

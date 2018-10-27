@@ -1,4 +1,4 @@
-const {resolve} = require('path')
+const { resolve } = require('path')
 const pathToRegexp = require('path-to-regexp')
 
 module.exports = function (moduleOptions) {
@@ -57,9 +57,9 @@ module.exports = function (moduleOptions) {
      * and add them for 'generation'.
      */
     let routesRouter = flatRoutes(router.routes)
-    routesRouter = routesRouter.filter((route) => {
+    routesRouter = routesRouter.filter(route => {
       let tokens = pathToRegexp.parse(route)
-      let params = tokens.filter((token) => typeof token === 'object')
+      let params = tokens.filter(token => typeof token === 'object')
       return params.length === 1 && params[0].name === 'lang'
     })
     routesRouter.forEach(routeWithLang => {
@@ -78,7 +78,8 @@ module.exports = function (moduleOptions) {
     const defaults1 = {
       languages: ['en'],
       dateTimeFormats: {},
-      numberFormats: {}
+      numberFormats: {},
+      redirectDefaultLang: true
     }
     options = Object.assign(defaults1, options)
     if (options.languages.length < 1) {
@@ -110,10 +111,13 @@ module.exports = function (moduleOptions) {
   function interpolateLangInRoute (path, payload) {
     let toPath = pathToRegexp.compile(path)
     let languageParamList = moduleOptions.languages.concat(null)
+    if (!moduleOptions.redirectDefaultLang && ~languageParamList.indexOf(moduleOptions.defaultLanguage)) {
+      languageParamList.splice(languageParamList.indexOf(moduleOptions.defaultLanguage), 1)
+    }
     return languageParamList.map(languageParam => {
       return {
-        route: toPath({lang: languageParam}),
-        payload: Object.assign({lang: languageParam}, payload)
+        route: toPath({ lang: languageParam }),
+        payload: Object.assign({ lang: languageParam }, payload)
       }
     })
   }

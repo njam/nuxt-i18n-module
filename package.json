@@ -34,7 +34,7 @@
     ]
   },
   "scripts": {
-    "pretest": "eslint 'src/**'",
+    "pretest": "eslint .",
     "test": "jest"
   }
 }

@@ -5,7 +5,9 @@ module.exports = {
     [
       '@@',
       {
-        languages: ['en', 'de']
+        languages: ['en', 'de'],
+        defaultLanguage: 'en',
+        redirectDefaultLang: false
       }
     ]
   ],
