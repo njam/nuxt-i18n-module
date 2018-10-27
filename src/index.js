@@ -1,8 +1,9 @@
-const { resolve } = require('path')
+const {resolve} = require('path')
 const pathToRegexp = require('path-to-regexp')
 
 module.exports = function (moduleOptions) {
   moduleOptions = parseModuleOptions(moduleOptions)
+  moduleOptions = extendModuleOptions(moduleOptions)
   let router = this.options.router
 
   // Add middleware
@@ -96,6 +97,20 @@ module.exports = function (moduleOptions) {
   }
 
   /**
+   * @param {Object} options
+   * @returns {Object}
+   */
+  function extendModuleOptions (options) {
+    let languagesExplicit = options.languages
+    if (false === options.redirectDefaultLang) {
+      languagesExplicit = languagesExplicit.filter(lang => (lang !== options.defaultLanguage))
+    }
+    options.languagesExplicit = languagesExplicit
+
+    return options
+  }
+
+  /**
    * @param {string} path
    * @returns {string}
    */
@@ -110,14 +125,11 @@ module.exports = function (moduleOptions) {
    */
   function interpolateLangInRoute (path, payload) {
     let toPath = pathToRegexp.compile(path)
-    let languageParamList = moduleOptions.languages.concat(null)
-    if (!moduleOptions.redirectDefaultLang && ~languageParamList.indexOf(moduleOptions.defaultLanguage)) {
-      languageParamList.splice(languageParamList.indexOf(moduleOptions.defaultLanguage), 1)
-    }
+    let languageParamList = moduleOptions.languagesExplicit.concat(null)
     return languageParamList.map(languageParam => {
       return {
-        route: toPath({ lang: languageParam }),
-        payload: Object.assign({ lang: languageParam }, payload)
+        route: toPath({lang: languageParam}),
+        payload: Object.assign({lang: languageParam}, payload)
       }
     })
   }
