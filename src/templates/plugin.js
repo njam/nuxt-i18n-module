@@ -40,7 +40,7 @@ export default ({app, store}) => {
     redirectDefaultLang = {
       beforeMount () {
         if (!this.$options.parent && !this.$route.params.lang) {
-          this.$router.replace({params: {lang: this.detectLanguage()}})
+          this.$router.replace({params: {lang: this.i18nDetectLanguage()}})
         }
       }
     }
@@ -60,7 +60,7 @@ export default ({app, store}) => {
             }
             return url
           },
-          detectLanguage () {
+          i18nDetectLanguage () {
             let languageBrowserList = []
             if (typeof navigator !== 'undefined') {
               if (navigator.userLanguage) {
@@ -84,6 +84,12 @@ export default ({app, store}) => {
             }
 
             return languageMatchFull || languageMatchPartial || options.defaultLanguage
+          },
+          i18nLangParam(language) {
+            if (language === options.defaultLanguage && !options.redirectDefaultLang) {
+              return null;
+            }
+            return language;
           }
         },
         ...redirectDefaultLang,
