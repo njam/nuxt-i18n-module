@@ -6,7 +6,8 @@ import I18nSwitcher from './components/i18n-switcher.vue'
 Vue.use(VueI18n)
 
 export default ({app, store}) => {
-  registerStoreModule(store, 'i18n', {
+  let preserveState = !!store.state['i18n']
+  store.registerModule('i18n', {
     namespaced: true,
     state: () => ({
       language: null
@@ -20,7 +21,7 @@ export default ({app, store}) => {
         app.i18n.locale = language
       }
     }
-  })
+  }, { preserveState })
 
   let messages = {}
   options.languages.forEach(lang => {
@@ -132,19 +133,6 @@ export default ({app, store}) => {
   })
 
   Vue.component('i18n-switcher', I18nSwitcher)
-}
-
-function registerStoreModule (store, name, definition) {
-  // See https://github.com/vuejs/vuex/issues/789#issuecomment-305241136
-  if (store.state[name]) {
-    const currentState = store.state[name]
-    const moduleState = definition.state
-    definition.state = () => {
-      definition.state = moduleState
-      return currentState
-    }
-  }
-  store.registerModule(name, definition)
 }
 
 const options = JSON.parse('<%= serialize(options) %>')
