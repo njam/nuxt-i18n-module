@@ -20,6 +20,11 @@ export default ({app, store}) => {
         state.language = language
         app.i18n.locale = language
       }
+    },
+    getters: {
+      getLanguage (state) {
+        return state.language
+      }
     }
   }, { preserveState })
 
