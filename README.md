@@ -77,6 +77,12 @@ The _language switcher_ prints a list of links leading to translations of the cu
 <i18n-switcher/>
 ```
 
+#### Vuex Store
+This module registers a Vuex store module with the name `i18n`.
+It exposes the following functionality:
+- Mutation `setLanguage(lang)`
+- Getter `getLanguage()`
+
 Development
 -----------
 Install dependencies:
