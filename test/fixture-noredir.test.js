@@ -22,6 +22,7 @@ describe('Fixture "noredir"', () => {
       expect(html).not.toMatch(new RegExp('<link [^>]*hreflang="x-default"[^>]*>'))
       expect(html).toMatch(/<a href="\/foo" [^>]*class="language-switcher-link[^>]*>en<\/a>/)
       expect(html).toMatch(/<a href="\/de\/foo" [^>]*class="language-switcher-link[^>]*>de<\/a>/)
+      expect(html).toContain('<div>i18n/getLanguage=en</div>')
     })
   })
 
@@ -36,6 +37,7 @@ describe('Fixture "noredir"', () => {
       expect(html).not.toMatch(new RegExp('<link [^>]*hreflang="x-default"[^>]*>'))
       expect(html).toMatch(/<a href="\/foo" [^>]*class="language-switcher-link[^>]*>en<\/a>/)
       expect(html).toMatch(/<a href="\/de\/foo" [^>]*class="language-switcher-link[^>]*>de<\/a>/)
+      expect(html).toContain('<div>i18n/getLanguage=de</div>')
     })
   })
 

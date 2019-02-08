@@ -22,6 +22,7 @@ describe('Fixture "default"', () => {
       expect(html).toMatch(new RegExp('<link [^>]*href="/foo" [^>]*rel="alternate" [^>]*hreflang="x-default"[^>]*>'))
       expect(html).toMatch(/<a href="\/en\/foo" [^>]*class="language-switcher-link[^>]*>en<\/a>/)
       expect(html).toMatch(/<a href="\/de\/foo" [^>]*class="language-switcher-link[^>]*>de<\/a>/)
+      expect(html).toContain('<div>i18n/getLanguage=de</div>')
     })
   })
 
@@ -36,6 +37,7 @@ describe('Fixture "default"', () => {
       expect(html).toMatch(new RegExp('<link [^>]*href="/foo" [^>]*rel="alternate" [^>]*hreflang="x-default"[^>]*>'))
       expect(html).toMatch(/<a href="\/en\/foo" [^>]*class="language-switcher-link[^>]*>en<\/a>/)
       expect(html).toMatch(/<a href="\/de\/foo" [^>]*class="language-switcher-link[^>]*>de<\/a>/)
+      expect(html).toContain('<div>i18n/getLanguage=en</div>')
     })
   })
 
@@ -50,6 +52,7 @@ describe('Fixture "default"', () => {
       expect(html).toMatch(new RegExp('<link [^>]*href="/foo" [^>]*rel="alternate" [^>]*hreflang="x-default"[^>]*>'))
       expect(html).toMatch(/<a href="\/en\/foo" [^>]*class="language-switcher-link[^>]*>en<\/a>/)
       expect(html).toMatch(/<a href="\/de\/foo" [^>]*class="language-switcher-link[^>]*>de<\/a>/)
+      expect(html).toContain('<div>i18n/getLanguage=en</div>')
 
       /**
        * @todo
@@ -74,6 +77,7 @@ describe('Fixture "default"', () => {
       )
       expect(html).toMatch(/<a href="\/en\/dynamic\/44" [^>]*class="language-switcher-link[^>]*>en<\/a>/)
       expect(html).toMatch(/<a href="\/de\/dynamic\/44" [^>]*class="language-switcher-link[^>]*>de<\/a>/)
+      expect(html).toContain('<div>i18n/getLanguage=de</div>')
     })
   })
 })
