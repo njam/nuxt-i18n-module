@@ -97,6 +97,11 @@ yarn run test
 
 Release a new version:
 
-1. Bump the version in `package.json`, merge to *master*.
-2. Push a new tag to *master*.
-3. Travis will deploy to NPM.
+1. Bump the version in `package.json`
+2. Commit, tag and push to master:
+```
+git commit -am 'version <version>
+git tag --annotate v<version>
+git push --follow-tags
+```
+3. Travis will deploy to NPM
