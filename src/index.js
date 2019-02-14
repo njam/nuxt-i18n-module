@@ -30,9 +30,6 @@ module.exports = function (moduleOptions) {
 
   // Add routes for *routing*
   this.extendRoutes(function (routes) {
-    routes.sort((a, b) => {
-      return b['path'].length - a['path'].length
-    })
     routes.forEach(route => {
       route.path = addLangParamToRoute(route.path)
     })
@@ -115,7 +112,8 @@ module.exports = function (moduleOptions) {
    * @returns {string}
    */
   function addLangParamToRoute (path) {
-    return `/:lang([\\w-]{2,5})?${path}`
+    let langs = moduleOptions.languagesExplicit.join('|')
+    return `/:lang(${langs})?${path}`
   }
 
   /**
