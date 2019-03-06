@@ -112,8 +112,12 @@ module.exports = function (moduleOptions) {
    * @returns {string}
    */
   function addLangParamToRoute (path) {
-    let langs = moduleOptions.languagesExplicit.join('|')
-    return `/:lang(${langs})?${path}`
+    if (moduleOptions.languagesExplicit.length > 0) {
+      let langs = moduleOptions.languagesExplicit.join('|')
+      return `/:lang(${langs})?${path}`
+    }
+
+    return `/:lang?${path}`
   }
 
   /**
