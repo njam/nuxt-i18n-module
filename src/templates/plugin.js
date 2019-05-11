@@ -35,7 +35,7 @@ export default ({app, store}) => {
   app.i18n = new VueI18n({
     locale: store.state['i18n'].language,
     fallbackLocale: options.defaultLanguage,
-    messages: messages,
+    messages: Object.freeze(messages),
     dateTimeFormats: options.dateTimeFormats || {},
     numberFormats: options.numberFormats || {},
     silentTranslationWarn: true
