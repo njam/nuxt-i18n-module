@@ -46,7 +46,10 @@ export default ({app, store}) => {
     redirectDefaultLang = {
       beforeMount () {
         if (!this.$options.parent && !this.$route.params.lang) {
-          this.$router.replace({params: {lang: this.i18nDetectLanguage()}})
+          this.$router.replace({
+            params: {lang: this.i18nDetectLanguage()},
+            query: { ...this.$route.query }
+          })
         }
       }
     }
