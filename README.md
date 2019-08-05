@@ -100,7 +100,7 @@ Release a new version:
 1. Bump the version in `package.json`
 2. Commit, tag and push to master:
 ```
-git commit -am 'version <version>
+git commit -am 'version <version>'
 git tag --annotate v<version>
 git push --follow-tags
 ```
