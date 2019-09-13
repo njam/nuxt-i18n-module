@@ -77,11 +77,16 @@ module.exports = function (moduleOptions) {
       languages: ['en'],
       dateTimeFormats: {},
       numberFormats: {},
-      redirectDefaultLang: true
+      redirectDefaultLang: true,
+      rootUrl: null
     }
     options = Object.assign(defaults1, options)
     if (options.languages.length < 1) {
       throw new Error('At least one language should be configured.')
+    }
+    if (null !== options.rootUrl) {
+      // Make sure `rootUrl` does _not_ end on "/"
+      options.rootUrl = options.rootUrl.replace(/\/$/, '')
     }
     const defaults2 = {
       defaultLanguage: options.languages.find(e => !!e)

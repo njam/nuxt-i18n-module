@@ -50,6 +50,7 @@ The available options are:
 | dateTimeFormats       | Object    | `{}`              | Date time formats, see [vue-i18n](https://kazupon.github.io/vue-i18n/api/#datetimeformats) |
 | numberFormats         | Object    | `{}`              | Number formats, see [vue-i18n](https://kazupon.github.io/vue-i18n/api/#numberformats) |
 | redirectDefaultLang   | boolean   | `true`            | Redirect default lang to localized url (eg: redirect `/` to `/en` when `en` is your default language) |
+| rootUrl               | ?string   | `null`            | Root URL to prepend to alternate links. [Required by Google](https://support.google.com/webmasters/answer/189077). |
 
 3: Create files `assets/locale/en.json` and `assets/locale/de.json` with your global translation phrases.
 For example:
