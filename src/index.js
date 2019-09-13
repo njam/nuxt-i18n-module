@@ -84,7 +84,7 @@ module.exports = function (moduleOptions) {
     if (options.languages.length < 1) {
       throw new Error('At least one language should be configured.')
     }
-    if (null !== options.rootUrl) {
+    if (options.rootUrl !== null) {
       // Make sure `rootUrl` does _not_ end on "/"
       options.rootUrl = options.rootUrl.replace(/\/$/, '')
     }

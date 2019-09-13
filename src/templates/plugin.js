@@ -129,7 +129,7 @@ export default ({app, store}) => {
             link: alternateLinks.map(link => {
               let href = this.$router.resolve({params: {lang: link.param}}).href
               if (options.rootUrl !== null) {
-                href = options.rootUrl + href;
+                href = options.rootUrl + href
               }
               return {
                 href: href,
