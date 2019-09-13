@@ -127,8 +127,12 @@ export default ({app, store}) => {
           }
           return {
             link: alternateLinks.map(link => {
+              let href = this.$router.resolve({params: {lang: link.param}}).href
+              if (options.rootUrl !== null) {
+                href = options.rootUrl + href
+              }
               return {
-                href: this.$router.resolve({params: {lang: link.param}}).href,
+                href: href,
                 rel: 'alternate',
                 hreflang: link.hreflang,
                 hid: 'alternate-lang-' + link.hreflang

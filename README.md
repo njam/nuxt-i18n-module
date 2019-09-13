@@ -42,11 +42,15 @@ Installation & Configuration
 }
 ```
 The available options are:
-- **languages** (default: `[en]`): List of languages
-- **defaultLanguage** (default: first language): The default language
-- **dateTimeFormats** (default: `{}`): The formats for date time, see [vue-i18n](https://kazupon.github.io/vue-i18n/api/#datetimeformats)
-- **numberFormats** (default: `{}`): The formats for number, see [vue-i18n](https://kazupon.github.io/vue-i18n/api/#numberformats)
-- **redirectDefaultLang** (default: `true`): Redirect default lang to localized url (eg: redirect `/` to `/en` when `en` is your default language)
+
+| Name                  | Type      | Default           | Description       |
+| ----                  | ---       | ---               | ---               |
+| languages             | string[]  | `["en"]`          | List of languages |
+| defaultLanguage       | string    | First language    | Default language  |
+| dateTimeFormats       | Object    | `{}`              | Date time formats, see [vue-i18n](https://kazupon.github.io/vue-i18n/api/#datetimeformats) |
+| numberFormats         | Object    | `{}`              | Number formats, see [vue-i18n](https://kazupon.github.io/vue-i18n/api/#numberformats) |
+| redirectDefaultLang   | boolean   | `true`            | Redirect default lang to localized url (eg: redirect `/` to `/en` when `en` is your default language) |
+| rootUrl               | ?string   | `null`            | Root URL to prepend to alternate links. [Required by Google](https://support.google.com/webmasters/answer/189077). |
 
 3: Create files `assets/locale/en.json` and `assets/locale/de.json` with your global translation phrases.
 For example:
