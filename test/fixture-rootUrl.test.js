@@ -13,6 +13,7 @@ describe('Fixture "rootUrl"', () => {
 
   describe('/en/foo', () => {
     fixture.testUrl('/en/foo', html => {
+      expect(html).toMatch(/<html [^>]*lang="en"/)
       expect(html).toContain('Foo page')
       expect(html).toContain('Hello World!')
       expect(html).toMatch(/<a href="\/en\/foo".*?>foo<\/a>/)
