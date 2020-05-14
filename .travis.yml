@@ -1,8 +1,9 @@
 sudo: false
 language: node_js
 node_js:
-  - "8"
-  - "9"
+  - "10"  # LTS
+  - "12"  # LTS
+  - "14"  # Latest
 
 install: yarn install
 script: yarn run test
