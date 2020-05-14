@@ -99,6 +99,13 @@ Run tests:
 yarn run test
 ```
 
+Tests build and generate Nuxt sites and check their HTML output.
+Sometimes it can be useful to inspect the generated sites manually.
+For that just serve the test's output folder, for example using the "serve" package:
+```
+npx serve test/tmp/nuxt.config-default/nuxt-generate/
+```
+
 Release a new version:
 
 1. Bump the version in `package.json`
