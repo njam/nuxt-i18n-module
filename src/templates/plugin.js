@@ -127,7 +127,7 @@ export default ({app, store}) => {
           }
           return {
             htmlAttrs: {
-              lang: this.$i18n.locale,
+              lang: this.$i18n.locale
             },
             link: alternateLinks.map(link => {
               let href = this.$router.resolve({params: {lang: link.param}}).href
