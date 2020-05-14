@@ -5,7 +5,7 @@ nuxt-i18n-module
 [![npm](https://img.shields.io/npm/v/nuxt-i18n-module.svg)](https://www.npmjs.com/package/nuxt-i18n-module)
 
 
-Internationalization module for Nuxt.
+Internationalization module for Nuxt, with support for generating dynamic routes (SSR).
 
 
 About
@@ -23,6 +23,15 @@ This module will dynamically generate routes for a set of languages:
 - **/foo**: This page will detect the user's language on the *client side* and redirect to the appropriate language-URL if `redirectDefaultLang` is set to **true**.
 
 Those routes will also be generated when rendering in SSR mode.
+
+
+### What about [nuxt-community/nuxt-i18n](https://github.com/nuxt-community/nuxt-i18n)?
+
+The only advantage of _this_ module over the official [nuxt-community/nuxt-i18n](https://github.com/nuxt-community/nuxt-i18n) is
+that it can generate translated versions of [_dynamic routes_](https://nuxtjs.org/api/configuration-generate#routes).
+See [nuxt-i18n#21](https://github.com/nuxt-community/nuxt-i18n/issues/21) for more details.
+
+If you don't need to generate dynamic routes I recommend using the official module instead.
 
 
 Installation & Configuration
