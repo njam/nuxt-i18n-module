@@ -13,6 +13,7 @@ describe('Fixture "noredir"', () => {
 
   describe('/foo', () => {
     fixture.testUrl('/foo', html => {
+      expect(html).toMatch(/<html [^>]*lang="en"/)
       expect(html).toContain('Foo page')
       expect(html).toContain('Hello World!')
       expect(html).toMatch(/<a href="\/foo".*?>foo<\/a>/)
@@ -28,6 +29,7 @@ describe('Fixture "noredir"', () => {
 
   describe('/de/foo', () => {
     fixture.testUrl('/de/foo', html => {
+      expect(html).toMatch(/<html [^>]*lang="de"/)
       expect(html).toContain('Foo page')
       expect(html).toContain('Hallo Welt!')
       expect(html).toMatch(/<a href="\/de\/foo".*?>foo<\/a>/)

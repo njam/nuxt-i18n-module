@@ -13,6 +13,7 @@ describe('Fixture "default"', () => {
 
   describe('/de/foo', () => {
     fixture.testUrl('/de/foo', html => {
+      expect(html).toMatch(/<html [^>]*lang="de"/)
       expect(html).toContain('Foo page')
       expect(html).toContain('Hallo Welt!')
       expect(html).toMatch(/<a href="\/de\/foo".*?>foo<\/a>/)
@@ -28,6 +29,7 @@ describe('Fixture "default"', () => {
 
   describe('/en/foo', () => {
     fixture.testUrl('/en/foo', html => {
+      expect(html).toMatch(/<html [^>]*lang="en"/)
       expect(html).toContain('Foo page')
       expect(html).toContain('Hello World!')
       expect(html).toMatch(/<a href="\/en\/foo".*?>foo<\/a>/)
@@ -43,6 +45,7 @@ describe('Fixture "default"', () => {
 
   describe('/foo', () => {
     fixture.testUrl('/foo', html => {
+      expect(html).toMatch(/<html [^>]*lang="en"/)
       expect(html).toContain('Foo page')
       expect(html).toContain('Hello World!')
       expect(html).toMatch(/<a href="\/en\/foo".*?>foo<\/a>/)
@@ -68,6 +71,7 @@ describe('Fixture "default"', () => {
 
   describe('/de/dynamic/44', () => {
     fixture.testUrl('/de/dynamic/44', html => {
+      expect(html).toMatch(/<html [^>]*lang="de"/)
       expect(html).toContain('Dynamic page: 44')
       expect(html).toContain('Hallo Welt!')
       expect(html).toMatch(new RegExp('<link [^>]*href="/en/dynamic/44" [^>]*rel="alternate" [^>]*hreflang="en"[^>]*>'))
